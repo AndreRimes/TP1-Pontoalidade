@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.collections.*?>
+<?import javafx.scene.shape.SVGPath?>
+
+
+
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1" id="AnchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="mainFxmlClass" fx:controller="pontoalidade.JustificativaController">
+  <stylesheets>
+    <URL value="@../styles/justificativa.css"/>
+  </stylesheets>
+
+    <VBox spacing="10" alignment="CENTER" prefWidth="400" prefHeight="300" 
+          AnchorPane.topAnchor="50" AnchorPane.leftAnchor="30" AnchorPane.rightAnchor="30" AnchorPane.bottomAnchor="50" >
+        <Label fx:id="title" text="Justificar Falta" />
+        <Label fx:id="dateLabel" text="Justificar falta XX/XX/XXXX" />
+        <Label fx:id="descriptionField" prefWidth="300"  prefHeight="150"/>
+    </VBox>
+</AnchorPane>

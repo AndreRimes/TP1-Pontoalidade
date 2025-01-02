@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.collections.*?>
+
+
+<AnchorPane  xmlns:fx="http://javafx.com/fxml/1" id="AnchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="mainFxmlClass" fx:controller="pontoalidade.LoginController">
+    <stylesheets>
+        <URL value="@../styles/signup.css"/>
+    </stylesheets>
+
+     <VBox fx:id="box" alignment="CENTER" spacing="30" 
+          AnchorPane.topAnchor="55" AnchorPane.leftAnchor="30" AnchorPane.rightAnchor="30" AnchorPane.bottomAnchor="55">    
+        <Label text="Cadastro de Usuario" fx:id="login" />
+        <VBox fx:id="emailBox" alignment="CENTER" spacing="2">
+            <Label text="Email: " fx:id="emailLabel"/>
+            <TextField fx:id="emailField" promptText="Email" />
+        </VBox>
+       <VBox fx:id="nameBox" alignment="CENTER" spacing="2">
+        <Label fx:id="nameLabel" text="Nome Completo: " />
+        <TextField fx:id="nameField" promptText="Nome Completo" />
+       </VBox>
+        <VBox fx:id="senhaBox" alignment="CENTER" spacing="2">
+            <Label text="Senha" fx:id="senhaLabel" />
+            <PasswordField fx:id="passwordField" promptText="Password" />
+        </VBox>        
+        <Hyperlink text="Ja possui uma conta? Clique aqui" fx:id="signupLink" />
+        <Button text="Cadastrar" fx:id="btn" />
+    </VBox>
+</AnchorPane>

@@ -1,0 +1,34 @@
+.mainFxmlClass {
+    -fx-background-color: black
+}
+
+#title {
+    -fx-text-fill: white;
+    -fx-font-size: 30px;
+    -fx-font-weight: bold;
+}
+
+#dateLabel {
+    -fx-text-fill: white;
+    -fx-font-size: 25px;
+}
+
+#descriptionField {
+/*    -fx-text-fill : white;*/
+    -fx-background-color: transparent;
+    -fx-border-radius: 10px;
+    -fx-border-color: #0AFF9D; 
+    -fx-padding: 7px 8px 7px 8px;
+    -fx-text-fill: white;
+}
+
+
+#btn{
+    -fx-pref-width: 400px;
+    -fx-border-radius: 10px;
+    -fx-background-color: #0AFF9D;
+    -fx-text-fill: white;
+    -fx-padding: 7px 8px 7px 8px; /* top right bottom left */
+    -fx-cursor: pointer
+}
+

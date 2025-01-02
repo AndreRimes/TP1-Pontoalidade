@@ -1,0 +1,76 @@
+.mainFxmlClass {
+   -fx-background-color: black;
+   -fx-text-fill:white;
+}
+
+#login {
+    -fx-text-fill:white;
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+}
+
+#emailField {
+    -fx-max-width: 300px;
+    -fx-border-radius: 10px;
+    -fx-background-color: transparent;
+    -fx-border-color: white;
+    -fx-border-width: 1px;
+    -fx-border-style: solid;
+    -fx-padding: 10px 0 10px 8px; /* top right bottom left */
+    -fx-text-fill:white;
+    -fx-border-color: #0AFF9D;
+    -fx-font-weight: bold;
+}
+
+#passwordField {
+    -fx-max-width: 300px;  
+    -fx-border-radius: 10px;
+    -fx-background-color: transparent;
+    -fx-border-color: white;
+    -fx-border-width: 1px;
+    -fx-border-style: solid;
+    -fx-padding: 10px 0 10px 8px; /* top right bottom left */
+    -fx-text-fill:white;
+    -fx-border-color: #0AFF9D;
+    -fx-font-weight: bold;
+}
+
+
+#box {
+    -fx-border-style: solid;
+    -fx-border-width: 1px;
+    -fx-border-color: #111111;
+    -fx-background-color: #111111;
+    -fx-border-radius: 20px;
+}
+
+#btn {
+    -fx-pref-width: 200px;
+    -fx-border-radius: 10px;
+    -fx-border-color: #0AFF9D;
+    -fx-background-color: transparent;
+    -fx-text-fill: white;
+    -fx-padding: 7px 8px 7px 8px; /* top right bottom left */
+}
+
+#btn:hover {
+   -fx-background-color: #0AFF9D;
+   -fx-text-fill: #121212;
+}
+
+#signupLink {
+    -fx-text-fill: white;
+}
+
+
+#senhaLabel{
+    -fx-text-fill: white;
+    -fx-max-width: 300px; 
+}
+
+#emailLabel {
+    -fx-text-fill: white;
+    -fx-max-width: 300px; 
+}
+
+

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1" id="AnchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="mainFxmlClass" fx:controller="pontoalidade.LoginController">
+  <stylesheets>
+    <URL value="@../styles/login.css"/>
+  </stylesheets>
+
+  <VBox fx:id="box" alignment="CENTER" spacing="30"
+         AnchorPane.topAnchor="50" AnchorPane.leftAnchor="30" AnchorPane.rightAnchor="30" AnchorPane.bottomAnchor="50">
+    <Label text="Login no Pontoalidade" fx:id="login" /> <VBox fx:id="box" alignment="CENTER" spacing="30"
+         AnchorPane.topAnchor="50" AnchorPane.leftAnchor="30" AnchorPane.rightAnchor="30" AnchorPane.bottomAnc
+    <VBox fx:id="emailBox" alignment="CENTER" spacing="2">
+      <Label text="Email: " fx:id="emailLabel"/>
+      <TextField fx:id="emailField" promptText="Email" />
+    </VBox>
+    <VBox fx:id="senhaBox" alignment="CENTER" spacing="2">
+      <Label text="Senha" fx:id="senhaLabel" />
+      <PasswordField fx:id="passwordField" promptText="Password" />
+    </VBox>
+    <Hyperlink text="Nao possui uma conta? Click aqui" fx:id="signupLink" />
+    <Button text="Login" fx:id="btn" />
+  </VBox>
+</AnchorPane>

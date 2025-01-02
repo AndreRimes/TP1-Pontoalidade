@@ -1,0 +1,99 @@
+.mainFxmlClass {
+   -fx-background-color: black;
+}
+
+
+#main {
+    -fx-padding: 20px;
+}
+
+#topHor {
+    -fx-pref-height: 300;
+    -fx-pref-width: 100%;
+}
+
+#botHor{
+/*    -fx-pref-height: 300;
+    -fx-pref-width: 100%;*/
+    -fx-background-color: #111111; 
+    -fx-padding: 10px;
+}
+
+
+
+#info {
+    -fx-background-color: #111111;
+    -fx-pref-height: 300;
+    -fx-pref-width: 50%;
+    -fx-padding: 20px;
+}
+
+#name {
+    -fx-text-fill:white;
+    -fx-font-size: 50px;
+    -fx-font-weight: bold;
+}
+
+#horasMes {
+    -fx-text-fill:white;
+    -fx-font-size: 24px;
+}
+
+#salarioEstimado {
+    -fx-text-fill:white;
+    -fx-font-size: 24px;
+}
+
+
+#clock {
+   -fx-background-color: #111111; 
+   -fx-pref-width: 50%;
+}
+
+#hour {
+    -fx-text-fill:white;
+    -fx-font-size: 50px;
+    -fx-font-weight: bold;
+}
+
+#pauseBtn {
+    -fx-pref-width: 200px;
+    -fx-border-radius: 10px;
+    -fx-border-color: #0AFF9D;
+    -fx-background-color: transparent;
+    -fx-text-fill: white;
+    -fx-padding: 7px 8px 7px 8px; /* top right bottom left */
+    -fx-cursor: pointer
+}
+
+#terminarBtn {
+    -fx-pref-width: 200px;
+    -fx-border-radius: 10px;
+    -fx-border-color: #0AFF9D;
+    -fx-background-color: transparent;
+    -fx-text-fill: white;
+    -fx-padding: 7px 8px 7px 8px; /* top right bottom left */
+    -fx-cursor: pointer
+}
+
+#countBtn {
+    -fx-pref-width: 400px;
+    -fx-border-radius: 10px;
+    -fx-background-color: #0AFF9D;
+    -fx-text-fill: white;
+    -fx-padding: 7px 8px 7px 8px; /* top right bottom left */
+    -fx-cursor: pointer
+}
+
+#pauseBtn:hover {
+   -fx-background-color: #0AFF9D;
+   -fx-text-fill: #121212;
+   -fx-transform: scale(1.1);
+}
+
+#terminarBtn:hover {
+   -fx-background-color: #0AFF9D;
+   -fx-text-fill: #121212;
+   -fx-transform: scale(1.1);
+}
+

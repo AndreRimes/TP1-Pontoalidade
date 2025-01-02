@@ -1,0 +1,54 @@
+.mainFxmlClass {
+   -fx-background-color: black;
+}
+
+
+#main {
+    -fx-padding: 20px;
+}
+
+#topHor {
+    -fx-pref-height: 300;
+    -fx-pref-width: 100%;
+    -fx-background-color: #111111; 
+}
+
+#botHor{
+/*    -fx-pref-height: 300;
+    -fx-pref-width: 100%;*/
+    -fx-background-color: #111111; 
+    -fx-padding: 10px;
+}
+
+
+#nameOrg {
+    -fx-text-fill:white;
+    -fx-font-size: 50px;
+    -fx-font-weight: bold;
+}
+
+#cnpjLabel {
+    -fx-text-fill:white;
+    -fx-font-size: 24px;
+}
+
+#senha {
+    -fx-text-fill:white;
+    -fx-font-size: 24px;
+}
+
+#senhaBtn {
+     -fx-border-radius: 10px;
+    -fx-border-color: #0AFF9D;
+    -fx-background-color: transparent;
+    -fx-text-fill: white;
+    -fx-padding: 7px 8px 7px 8px;
+}
+
+#emailLabel {
+    -fx-text-fill:white;
+    -fx-font-size: 24px;
+}
+
+
+

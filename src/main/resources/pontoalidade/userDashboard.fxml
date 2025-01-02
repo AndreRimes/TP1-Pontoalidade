@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.collections.*?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.SVGPath?>
+
+
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pontoalidade.UserDashboardController">
+    <stylesheets>
+         <URL value="@../styles/userDashboard.css"/>
+    </stylesheets>
+    
+ <VBox spacing="10" fx:id="main" AnchorPane.topAnchor="0.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+  <HBox fx:id="topHor" VBox.vgrow="NEVER" spacing="10">
+    <VBox spacing="10" fx:id="info" HBox.hgrow="ALWAYS">
+        <Label fx:id="name" text="Nome do Usuario" />
+        <Label fx:id="horasMes" text="Horas trabalhadas no mes 0" />
+        <Label fx:id="salarioEstimado" text="Salario estimado: R$0" />
+    </VBox>
+    <VBox fx:id="clock" HBox.hgrow="ALWAYS" alignment="CENTER" spacing="30">
+        <Label fx:id="hour" text="00:00" />
+        <HBox spacing="20" fx:id="btns" HBox.hgrow="ALWAYS" alignment="CENTER">
+            <Button fx:id="pauseBtn" text="pausar" />
+            <Button fx:id="terminarBtn" text="terminar" />
+        </HBox>
+        <Button text="Comçar a contar" fx:id="countBtn" HBox.hgrow="ALWAYS"/>
+    </VBox>
+</HBox>
+
+  <HBox fx:id="botHor" VBox.vgrow="ALWAYS" spacing="10">
+      <TableView fx:id="table" HBox.hgrow="ALWAYS">
+          <columns>
+             <TableColumn fx:id="dateColumn" text="Data" />
+             <TableColumn fx:id="hoursColumn" text="Horas Trabalhadas" />
+             <TableColumn fx:id="actionColumn" text="Acao" />
+          </columns>
+      </TableView> 
+  </HBox>
+</VBox>
+    
+    
+     
+</AnchorPane>
