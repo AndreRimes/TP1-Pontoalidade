@@ -14,7 +14,25 @@ public class Dia {
     private String horarioInicio;
     private String horarioFinal;
     private double horarioTotal;
+    private Falta falta;
+    private Pausa pausa; 
+    
+    
+    public Pausa getPausa() {
+        return pausa;
+    }
 
+    public void setPausa(Pausa pausa) {
+        this.pausa = pausa;
+    }
+    
+    public Falta getFalta() {
+        return falta;
+    }
+
+    public void setFalta(Falta falta) {
+        this.falta = falta;
+    }
 
     public Dia(String data, String horarioInicio, String horarioFinal) {
         this.id = idCounter++;
@@ -31,7 +49,11 @@ public class Dia {
         Duration duration = Duration.between(start, end);
         return duration.toMinutes() / 60.0;
     }
-
+    
+    /**
+     *
+     * @return
+     */
     // Getters and setters
     public int getId() {
         return id;

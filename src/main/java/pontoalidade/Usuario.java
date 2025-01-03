@@ -32,7 +32,9 @@ public abstract class Usuario {
         this.diasTrabalhados = new ArrayList<>();
         this.organizacao = organizacao;
     }
-
+    
+    
+    
     public Organizacao getOrganizacao() {
         return organizacao;
     }

@@ -4,19 +4,21 @@
  */
 package pontoalidade;
 
+import java.util.List;
+
 /**
  *
  * @author Rios_01
  */
-public class Faltas {
+public class Falta {
     private int id;
     private String data;
-
-    public Faltas(int id, String data) {
+    private Justificativa justificativa;
+    public Falta(int id, String data) {
         this.id = id;
         this.data = data;
     }
-
+            
     public int getId() {
         return id;
     }
