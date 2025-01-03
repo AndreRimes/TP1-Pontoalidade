@@ -10,14 +10,28 @@ package pontoalidade;
  */
 public class Main {
 public static void main(String[] args) {
-    Funcionario funcionario = new Funcionario("João Silva", "joao@empresa.com", "12345678900", "senha123", 20.0);
+        Organizacao organizacao = new Organizacao("Tech Corp", "12345678000199");
 
-    funcionario.addDiaTrabalhado(new Dia("2025-01-01", "08:00", "16:00"));
-    funcionario.addDiaTrabalhado(new Dia("2025-01-02", "09:00", "17:00"));
-    
-    System.out.println("Salário do Funcionario: " + funcionario.calculaSalario());
-    System.out.println(funcionario);
-}
+        Administrador admin = new Administrador("Carlos Silva", "admin@techcorp.com", "12345678900", "adminpass", 50.0, organizacao);
+
+        Funcionario func1 = new Funcionario("João Silva", "joao@techcorp.com", "98765432100", "senha123", 20.0, organizacao);
+        Funcionario func2 = new Funcionario("Maria Santos", "maria@techcorp.com", "87654321000", "senha456", 25.0, organizacao);
+
+        admin.addFuncionario(func1);
+        admin.addFuncionario(func2);
+
+        System.out.println("Usuários na organização:");
+        for (Usuario usuario : organizacao.getUsuarios()) {
+            System.out.println(usuario);
+        }
+
+        admin.deleteFuncionario(func1);
+
+        System.out.println("\nUsuários na organização após exclusão:");
+        for (Usuario usuario : organizacao.getUsuarios()) {
+            System.out.println(usuario);
+        }
+    }
 
 
 

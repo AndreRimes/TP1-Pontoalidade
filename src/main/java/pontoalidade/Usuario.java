@@ -20,15 +20,25 @@ public abstract class Usuario {
     private String senha;
     protected double salarioPorHora;
     private List<Dia> diasTrabalhados;
+    public Organizacao organizacao; // Associating user with an organization
 
-    public Usuario(String nome, String email, String cpf, String senha, double salarioPorHora) {
-        this.id = ++idCounter;
+    public Usuario(String nome, String email, String cpf, String senha, double salarioPorHora, Organizacao organizacao) {
+        this.id = ++idCounter; 
         this.nome = nome;
         this.email = email;
         this.cpf = cpf;
         this.senha = senha;
         this.salarioPorHora = salarioPorHora;
         this.diasTrabalhados = new ArrayList<>();
+        this.organizacao = organizacao;
+    }
+
+    public Organizacao getOrganizacao() {
+        return organizacao;
+    }
+    
+    public void setOrganizacao(Organizacao organizacao) {
+        this.organizacao = organizacao;
     }
 
     public int getId() {
@@ -99,7 +109,9 @@ public abstract class Usuario {
                 ", email='" + email + '\'' +
                 ", cpf='" + cpf + '\'' +
                 ", salarioPorHora=" + salarioPorHora +
+                ", organizacao=" + (organizacao != null ? organizacao.getNome() : "Nenhuma") +
                 '}';
     }
 }
+
 

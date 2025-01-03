@@ -11,8 +11,8 @@ package pontoalidade;
 public class Funcionario extends Usuario {
     private int metaHorasDiaria = 8;
 
-    public Funcionario(String nome, String email, String cpf, String senha, double salarioPorHora) {
-        super(nome, email, cpf, senha, salarioPorHora);
+    public Funcionario(String nome, String email, String cpf, String senha, double salarioPorHora, Organizacao organizacao) {
+        super(nome, email, cpf, senha, salarioPorHora, organizacao);
     }
 
     public int getMetaHorasDiaria() {

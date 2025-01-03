@@ -13,39 +13,20 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Administrador extends Usuario {
-    private List<Usuario> funcionarios;
-
-    public Administrador(String nome, String email, String cpf, String senha, double salarioPorHora) {
-        super(nome, email, cpf, senha, salarioPorHora);
-        this.funcionarios = new ArrayList<>();
+    public Administrador(String nome, String email, String cpf, String senha, double salarioPorHora, Organizacao organizacao) {
+        super(nome, email, cpf, senha, salarioPorHora, organizacao);
     }
 
-    public void addFuncionario(Usuario usuario) {
-        funcionarios.add(usuario);
+    public void addFuncionario(Funcionario funcionario) {
+        this.organizacao.addUsuario(funcionario);
     }
 
-    public void deleteFuncionario(int id) {
-        funcionarios.removeIf(usuario -> usuario.getId() == id);
-    }
-
-    public Usuario findFuncionario(int id) {
-        return funcionarios.stream()
-                .filter(usuario -> usuario.getId() == id)
-                .findFirst()
-                .orElse(null);
-    }
-    
-    public void editFuncionario(Usuario usuario) {
-        Usuario existing = findFuncionario(usuario.getId());
-        if (existing != null) {
-            existing.setNome(usuario.getNome());
-            existing.setEmail(usuario.getEmail());
-            existing.setCpf(usuario.getCpf());
-            existing.setSenha(usuario.getSenha());
-        }
+    public void deleteFuncionario(Usuario usuario) {
+        this.organizacao.deleteUsuario(usuario);
     }
     
     public double calculaHoras(Dia[] dias) {
         return 0;
     }
+
 }
