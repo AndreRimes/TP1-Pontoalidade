@@ -4,39 +4,37 @@
  */
 package pontoalidade;
 
-/**
- *
- * @author Rios_01
- */
+import java.time.LocalTime;
+import java.time.Duration;
+
 public class Dia {
-    private static int id;
+    private static int idCounter = 1;
+    private int id;
     private String data;
     private String horarioInicio;
     private String horarioFinal;
-    private int horarioTotal;
+    private double horarioTotal;
 
-    public Dia(int id, String data, String horarioInicio, String horarioFinal) {
-        this.id = id;
+
+    public Dia(String data, String horarioInicio, String horarioFinal) {
+        this.id = idCounter++;
         this.data = data;
         this.horarioInicio = horarioInicio;
         this.horarioFinal = horarioFinal;
-        this.horarioTotal = calcularHoras(horarioInicio, horarioFinal);
+        this.horarioTotal = calcularHoras(horarioInicio, horarioFinal); 
     }
 
-    public int calcularHoras(String horarioInicio, String horarioFinal) {
-       
+    public double calcularHoras(String horarioInicio, String horarioFinal) {
+        LocalTime start = LocalTime.parse(horarioInicio);
+        LocalTime end = LocalTime.parse(horarioFinal);
+        
+        Duration duration = Duration.between(start, end);
+        return duration.toMinutes() / 60.0;
     }
 
-    public int getHorarioTotal() {
-        return horarioTotal;
-    }
-
-    public static int getId() {
+    // Getters and setters
+    public int getId() {
         return id;
-    }
-
-    public static void setId(int id) {
-        Dia.id = id;
     }
 
     public String getData() {
@@ -53,6 +51,7 @@ public class Dia {
 
     public void setHorarioInicio(String horarioInicio) {
         this.horarioInicio = horarioInicio;
+        this.horarioTotal = calcularHoras(this.horarioInicio, this.horarioFinal); // Recalculate if start time changes
     }
 
     public String getHorarioFinal() {
@@ -61,5 +60,15 @@ public class Dia {
 
     public void setHorarioFinal(String horarioFinal) {
         this.horarioFinal = horarioFinal;
+        this.horarioTotal = calcularHoras(this.horarioInicio, this.horarioFinal); // Recalculate if end time changes
+    }
+
+    public double getHorarioTotal() {
+        return horarioTotal;
+    }
+
+    @Override
+    public String toString() {
+        return "Dia{id=" + id + ", data='" + data + "', horarioInicio='" + horarioInicio + "', horarioFinal='" + horarioFinal + "', horarioTotal=" + horarioTotal + '}';
     }
 }

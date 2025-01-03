@@ -8,11 +8,11 @@ package pontoalidade;
  *
  * @author Rios_01
  */
-public class Faltas {
+public class Justificativa {
     private int id;
     private String data;
 
-    public Faltas(int id, String data) {
+    public Justificativa(int id, String data) {
         this.id = id;
         this.data = data;
     }
