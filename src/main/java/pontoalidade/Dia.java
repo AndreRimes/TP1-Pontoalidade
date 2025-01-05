@@ -33,13 +33,22 @@ public class Dia {
     public void setFalta(Falta falta) {
         this.falta = falta;
     }
-
+    
+    public boolean faltou(int metaHorasDiaria){
+        if (horarioTotal < metaHorasDiaria){
+            Falta falta1 = new Falta(this.data);
+            this.falta = falta1;
+            return true;
+        }
+        return false;
+    }
+    
     public Dia(String data, String horarioInicio, String horarioFinal) {
         this.id = idCounter++;
         this.data = data;
         this.horarioInicio = horarioInicio;
         this.horarioFinal = horarioFinal;
-        this.horarioTotal = calcularHoras(horarioInicio, horarioFinal); 
+        this.horarioTotal = calcularHoras(horarioInicio, horarioFinal)-calcularHoras(pausa.getHorarioInicio(),pausa.getHorarioFim()); 
     }
 
     public double calcularHoras(String horarioInicio, String horarioFinal) {
@@ -50,11 +59,6 @@ public class Dia {
         return duration.toMinutes() / 60.0;
     }
     
-    /**
-     *
-     * @return
-     */
-    // Getters and setters
     public int getId() {
         return id;
     }
@@ -73,7 +77,7 @@ public class Dia {
 
     public void setHorarioInicio(String horarioInicio) {
         this.horarioInicio = horarioInicio;
-        this.horarioTotal = calcularHoras(this.horarioInicio, this.horarioFinal); // Recalculate if start time changes
+        this.horarioTotal = calcularHoras(this.horarioInicio, this.horarioFinal);
     }
 
     public String getHorarioFinal() {
@@ -82,7 +86,7 @@ public class Dia {
 
     public void setHorarioFinal(String horarioFinal) {
         this.horarioFinal = horarioFinal;
-        this.horarioTotal = calcularHoras(this.horarioInicio, this.horarioFinal); // Recalculate if end time changes
+        this.horarioTotal = calcularHoras(this.horarioInicio, this.horarioFinal);
     }
 
     public double getHorarioTotal() {

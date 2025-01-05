@@ -24,9 +24,4 @@ public class Administrador extends Usuario {
     public void deleteFuncionario(Usuario usuario) {
         this.organizacao.deleteUsuario(usuario);
     }
-    
-    public double calculaHoras(Dia[] dias) {
-        return 0;
-    }
-
 }
