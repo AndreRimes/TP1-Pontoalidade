@@ -11,12 +11,11 @@ package pontoalidade;
 public class Justificativa {
     private static int idCounter = 0;
     private final int id;
-    private String data;
     private String descricao;
+    private Falta falta;
 
-    public Justificativa(String data, String descricao) {
+    public Justificativa(String descricao) {
         this.id = ++idCounter;
-        this.data = data;
         this.descricao = descricao;
     }
 
@@ -25,11 +24,7 @@ public class Justificativa {
     }
 
     public String getData() {
-        return data;
-    }
-
-    public void setData(String data) {
-        this.data = data;
+        return falta.getData();
     }
 
     public String getDescricao() {

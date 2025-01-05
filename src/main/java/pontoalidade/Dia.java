@@ -48,7 +48,7 @@ public class Dia {
         this.data = data;
         this.horarioInicio = horarioInicio;
         this.horarioFinal = horarioFinal;
-        this.horarioTotal = calcularHoras(horarioInicio, horarioFinal); 
+        this.horarioTotal = calcularHoras(horarioInicio, horarioFinal)-calcularHoras(pausa.getHorarioInicio(),pausa.getHorarioFim()); 
     }
 
     public double calcularHoras(String horarioInicio, String horarioFinal) {

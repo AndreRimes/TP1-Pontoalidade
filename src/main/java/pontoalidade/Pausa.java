@@ -4,28 +4,37 @@
  */
 package pontoalidade;
 
+import java.time.Duration;
+import java.time.LocalTime;
+
 /**
  *
  * @author Rios_01
  */
 public class Pausa {
-    private int id;
+    private static int idCounter = 0;
+    private final int id;
     private String horarioInicio;
-    private String horarioFim;
+    private String horarioFinal;
+    private String horarioTotal;
+    private Dia dia;
 
-    public Pausa(int id, String horarioInicio, String horarioFim) {
-        this.id = id;
+    public Pausa(String horarioInicio, String horarioFinal) {
+        this.id = ++idCounter;
         this.horarioInicio = horarioInicio;
-        this.horarioFim = horarioFim;
+        this.horarioFinal = horarioFinal;
     }
 
-
+    public double calcularHoras(String horarioInicio, String horarioFinal) {
+        LocalTime start = LocalTime.parse(horarioInicio);
+        LocalTime end = LocalTime.parse(horarioFinal);
+        
+        Duration duration = Duration.between(start, end);
+        return duration.toMinutes() / 60.0;
+    }
+    
     public int getId() {
         return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public String getHorarioInicio() {
@@ -37,10 +46,6 @@ public class Pausa {
     }
 
     public String getHorarioFim() {
-        return horarioFim;
-    }
-
-    public void setHorarioFim(String horarioFim) {
-        this.horarioFim = horarioFim;
+        return horarioFinal;
     }
 }
