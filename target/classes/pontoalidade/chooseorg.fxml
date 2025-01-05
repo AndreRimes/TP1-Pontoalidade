@@ -23,20 +23,11 @@
          <HBox fx:id="backDiv" alignment="TOP_LEFT" spacing="10">
             <SVGPath fx:id="backArrow" content="M10 0 L0 5 L10 10 Z" fill="white" />
         </HBox>
-        <Label text="Entre na sua organizacao" fx:id="orgLabel" />
-       <VBox fx:id="selectBox" alignment="CENTER" spacing="2">
-           <Label text="Escolha sua organizacao: " fx:id="selectLabel" />
-            <ComboBox fx:id="comboBox" prefWidth="150">
-                <items>
-                    <FXCollections fx:factory="observableArrayList">
-                        <String fx:value="Option A" />
-                        <String fx:value="Option B" />
-                        <String fx:value="Option C" />
-                    </FXCollections>
-                </items>
-            </ComboBox>
-       </VBox>
-        <Hyperlink text="Nao possui uma organizacao cadastrada? clique aqui" fx:id="orgLink" />
+        <Label fx:id="title" text="Entre na Organizacao techORG" />
+        <VBox fx:id="senhaBox" alignment="CENTER" spacing="2">
+            <Label text="Senha" fx:id="senhaLabel" />
+            <PasswordField fx:id="passwordField" promptText="Password" />
+        </VBox>            
         <Button text="Entrar" fx:id="btn" />
     </VBox>
 </AnchorPane>

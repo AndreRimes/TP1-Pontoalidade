@@ -14,6 +14,7 @@ import java.util.List;
 public class Organizacao {
     private String nome;
     private String cnpj;
+    private String password;
     private List<Usuario> usuarios;
 
     public Organizacao(String nome, String cnpj) {
@@ -22,9 +23,10 @@ public class Organizacao {
         this.usuarios = new ArrayList<>();
     }
 
-    public Organizacao(String nome, String cnpj, List<Usuario> usuarios) {
+    public Organizacao(String nome, String cnpj, String senha, List<Usuario> usuarios) {
         this.nome = nome;
         this.cnpj = cnpj;
+        this.password = senha;
         this.usuarios = usuarios;
     }
 
@@ -53,7 +55,6 @@ public class Organizacao {
         this.usuarios = usuarios;
     }
 
-    // Methods to manage users
     public void addUsuario(Usuario usuario) {
         this.usuarios.add(usuario);
     }

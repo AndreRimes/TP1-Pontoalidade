@@ -58,7 +58,7 @@ public class UserProfileController implements Initializable {
         public RowData(String date, Integer hours) {
             this.date = date;
             this.hours = hours;
-            this.actionButton = new Button("Justificar Falta");
+            this.actionButton = new Button("Ver justificativa");
             this.actionButton.setOnAction(e -> openModal());
         }
 
@@ -72,8 +72,9 @@ public class UserProfileController implements Initializable {
             controller.setDate(date);
             controller.setDescription("Descricao da falta");
             
+            
             Stage stage = new Stage();
-            stage.setTitle("Ver Justificativa Falta");
+            stage.setTitle("Ver Justificatva");
             stage.setScene(new Scene(root));
             stage.initModality(Modality.APPLICATION_MODAL);
             stage.showAndWait();
