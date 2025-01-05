@@ -11,20 +11,17 @@ import java.util.List;
  * @author Rios_01
  */
 public class Falta {
-    private int id;
+    private static int idCounter = 0;
+    private final int id;
     private String data;
     private Justificativa justificativa;
-    public Falta(int id, String data) {
-        this.id = id;
+    public Falta(String data) {
+        this.id = ++idCounter;
         this.data = data;
     }
             
     public int getId() {
         return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public String getData() {
@@ -33,5 +30,9 @@ public class Falta {
 
     public void setData(String data) {
         this.data = data;
+    }
+    
+    public void setJustificativa(Justificativa justificativa){
+        this.justificativa = justificativa;
     }
 }

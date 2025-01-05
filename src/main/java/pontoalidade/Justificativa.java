@@ -9,21 +9,19 @@ package pontoalidade;
  * @author Rios_01
  */
 public class Justificativa {
-    private int id;
+    private static int idCounter = 0;
+    private final int id;
     private String data;
+    private String descricao;
 
-    public Justificativa(int id, String data) {
-        this.id = id;
+    public Justificativa(String data, String descricao) {
+        this.id = ++idCounter;
         this.data = data;
+        this.descricao = descricao;
     }
-
 
     public int getId() {
         return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public String getData() {
@@ -33,4 +31,14 @@ public class Justificativa {
     public void setData(String data) {
         this.data = data;
     }
+
+    public String getDescricao() {
+        return descricao;
+    }
+
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
+    }
+    
+    
 }

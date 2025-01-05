@@ -22,7 +22,13 @@ public class Funcionario extends Usuario {
     public void setMetaHorasDiaria(int metaHorasDiaria) {
         this.metaHorasDiaria = metaHorasDiaria;
     }
-
+    
+    public Justificativa justificarFalta(Falta falta, String conteudo){
+        Justificativa justificativa1 = new Justificativa(falta.getData(), conteudo);
+        falta.setJustificativa(justificativa1);
+        return justificativa1;
+    }
+    
     @Override
     public String toString() {
         return "Funcionario{" +
