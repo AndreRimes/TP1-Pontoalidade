@@ -49,7 +49,7 @@ public class OrganizacaoDashboardController implements Initializable {
             this.name = name;
             this.email = email;
             this.cpf = cpf;
-            this.button = new Button("Action");
+            this.button = new Button("Deletar");
             this.button.setOnAction(event -> {
                 System.out.println("Action for " + name);
             });

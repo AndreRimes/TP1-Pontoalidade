@@ -73,3 +73,29 @@
     -fx-padding: 10px;
     -fx-max-width: 400px;
 }
+
+
+#title {
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-font-size: 24px;
+}
+
+#senhaLabel{
+    -fx-text-fill: white;
+    -fx-max-width: 300px; 
+}
+
+
+#passwordField {
+    -fx-max-width: 300px;  
+    -fx-border-radius: 10px;
+    -fx-background-color: transparent;
+    -fx-border-color: white;
+    -fx-border-width: 1px;
+    -fx-border-style: solid;
+    -fx-padding: 10px 0 10px 8px; /* top right bottom left */
+    -fx-text-fill:white;
+    -fx-border-color: #0AFF9D;
+    -fx-font-weight: bold;
+}

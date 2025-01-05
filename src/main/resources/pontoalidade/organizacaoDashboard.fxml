@@ -31,11 +31,12 @@
   </HBox>
 
   <HBox fx:id="botHor" VBox.vgrow="ALWAYS" spacing="10">
-      <TableView fx:id="table" HBox.hgrow="ALWAYS">
+      <TableView fx:id="tabel" HBox.hgrow="ALWAYS">
           <columns>
-             <TableColumn fx:id="dateColumn" text="Data" />
-             <TableColumn fx:id="hoursColumn" text="Horas Trabalhadas" />
-             <TableColumn fx:id="actionColumn" text="Acao" />
+             <TableColumn fx:id="nameCol" text="Nome" />
+             <TableColumn fx:id="emailCol" text="Email" />
+             <TableColumn fx:id="cpfCol" text="CPF" />
+             <TableColumn fx:id="btnCol" text="Acao" />
           </columns>
       </TableView> 
   </HBox>

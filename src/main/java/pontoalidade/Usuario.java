@@ -33,8 +33,6 @@ public abstract class Usuario {
         this.organizacao = organizacao;
     }
     
-    
-    
     public Organizacao getOrganizacao() {
         return organizacao;
     }
