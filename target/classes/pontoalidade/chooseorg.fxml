@@ -13,7 +13,7 @@
 
 
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pontoalidade.ChoseOrgController">
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml/1" >
     <stylesheets>
          <URL value="@../styles/choseorg.css"/>
     </stylesheets>
@@ -21,13 +21,13 @@
      <VBox fx:id="box" alignment="CENTER" spacing="30" 
           AnchorPane.topAnchor="50" AnchorPane.leftAnchor="30" AnchorPane.rightAnchor="30" AnchorPane.bottomAnchor="50">  
          <HBox fx:id="backDiv" alignment="TOP_LEFT" spacing="10">
-            <SVGPath fx:id="backArrow" content="M10 0 L0 5 L10 10 Z" fill="white" />
+            <SVGPath onMouseClicked="#handleBackClick" fx:id="backArrow" content="M10 0 L0 5 L10 10 Z" fill="white" />
         </HBox>
-        <Label fx:id="title" text="Entre na Organizacao techORG" />
+        <Label fx:id="title" text="Entre na Organizacao Tech UnB" />
         <VBox fx:id="senhaBox" alignment="CENTER" spacing="2">
             <Label text="Senha" fx:id="senhaLabel" />
             <PasswordField fx:id="passwordField" promptText="Password" />
         </VBox>            
-        <Button text="Entrar" fx:id="btn" />
+        <Button text="Entrar" fx:id="btn" onAction="#handleButtonClick" />
     </VBox>
 </AnchorPane>

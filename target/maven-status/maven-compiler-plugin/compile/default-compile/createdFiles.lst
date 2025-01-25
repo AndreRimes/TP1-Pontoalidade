@@ -1,6 +1,6 @@
+pontoalidade\ChooseOrgController.class
 pontoalidade\SignupController.class
 pontoalidade\App.class
-pontoalidade\ChoseOrgController.class
 pontoalidade\OrganizacaoDashboardController$Employee.class
 pontoalidade\UserProfileController$RowData.class
 pontoalidade\Falta.class
@@ -12,7 +12,6 @@ pontoalidade\Pausa.class
 pontoalidade\Justificativa.class
 pontoalidade\Main.class
 pontoalidade\UserProfileController.class
-pontoalidade\CreateOrgController.class
 pontoalidade\UserDashboardController.class
 pontoalidade\Dia.class
 pontoalidade\UserDashboardController$RowData.class

@@ -10,7 +10,7 @@ package pontoalidade;
  */
 public class Main {
 public static void main(String[] args) {
-        Organizacao organizacao = new Organizacao("Tech Corp", "12345678000199");
+        Organizacao organizacao = new Organizacao("Tech Corp", "12345678000199", "12345");
 
         Administrador admin = new Administrador("Carlos Silva", "admin@techcorp.com", "12345678900", "adminpass", 50.0, organizacao);
 

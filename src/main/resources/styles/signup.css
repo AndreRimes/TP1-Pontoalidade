@@ -54,6 +54,19 @@
     -fx-font-weight: bold;
 }
 
+#cpfField {
+    -fx-max-width: 300px;  
+    -fx-border-radius: 10px;
+    -fx-background-color: transparent;
+    -fx-border-color: white;
+    -fx-border-width: 1px;
+    -fx-border-style: solid;
+    -fx-padding: 10px 0 10px 8px; /* top right bottom left */
+    -fx-text-fill:white;
+    -fx-border-color: #0AFF9D;
+    -fx-font-weight: bold;
+}
+
 #box {
 /*    -fx-border-style: solid;
     -fx-border-width: 1px;
@@ -97,3 +110,7 @@
     -fx-max-width: 300px; 
 }
 
+#cpfLabel {
+    -fx-text-fill: white;
+    -fx-max-width: 300px; 
+}

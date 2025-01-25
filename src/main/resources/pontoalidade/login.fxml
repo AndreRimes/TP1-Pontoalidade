@@ -7,7 +7,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane xmlns:fx="http://javafx.com/fxml/1" id="AnchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="mainFxmlClass" fx:controller="pontoalidade.LoginController">
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1" id="AnchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="mainFxmlClass" >
   <stylesheets>
     <URL value="@../styles/login.css"/>
   </stylesheets>
@@ -24,6 +24,6 @@
       <PasswordField fx:id="passwordField" promptText="Password" />
     </VBox>
     <Hyperlink text="Não possui uma conta? Clique aqui" fx:id="signupLink" />
-    <Button text="Login" fx:id="btn" />
+    <Button onAction="#handleClick" text="Login" fx:id="btn" />
   </VBox>
 </AnchorPane>

@@ -9,7 +9,7 @@
 <?import javafx.collections.*?>
 
 
-<AnchorPane  xmlns:fx="http://javafx.com/fxml/1" id="AnchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="mainFxmlClass" fx:controller="pontoalidade.LoginController">
+<AnchorPane  xmlns:fx="http://javafx.com/fxml/1" id="AnchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="mainFxmlClass">
     <stylesheets>
         <URL value="@../styles/signup.css"/>
     </stylesheets>
@@ -25,11 +25,15 @@
         <Label fx:id="nameLabel" text="Nome Completo: " />
         <TextField fx:id="nameField" promptText="Nome Completo" />
        </VBox>
+       <VBox fx:id="cpfBox" alignment="CENTER" spacing="2">
+        <Label fx:id="cpfLabel" text="CPF " />
+        <TextField fx:id="cpfField" promptText="CPF: " />
+       </VBox>
         <VBox fx:id="senhaBox" alignment="CENTER" spacing="2">
             <Label text="Senha" fx:id="senhaLabel" />
             <PasswordField fx:id="passwordField" promptText="Password" />
         </VBox>        
-        <Hyperlink text="Ja possui uma conta? Clique aqui" fx:id="signupLink" />
-        <Button text="Cadastrar" fx:id="btn" />
+        <Hyperlink text="Já possui uma conta? Clique aqui" fx:id="signupLink" onAction="#handleGoToLogin" />
+        <Button text="Cadastrar" fx:id="btn" onAction="#handleSignup" />
     </VBox>
 </AnchorPane>

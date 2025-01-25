@@ -17,9 +17,10 @@ public class Organizacao {
     private String password;
     private List<Usuario> usuarios;
 
-    public Organizacao(String nome, String cnpj) {
+    public Organizacao(String nome, String cnpj, String password) {
         this.nome = nome;
         this.cnpj = cnpj;
+        this.password = password;
         this.usuarios = new ArrayList<>();
     }
 
@@ -43,6 +44,14 @@ public class Organizacao {
         return usuarios;
     }
 
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+    
     public void setNome(String nome) {
         this.nome = nome;
     }
@@ -62,4 +71,17 @@ public class Organizacao {
     public void deleteUsuario(Usuario usuario) {
         this.usuarios.remove(usuario);
     }
+    
+    
+    public Usuario validateCredentials(String email, String password) {
+        for (Usuario usuario : usuarios) {
+            if (usuario.getEmail().equals(email) && usuario.getSenha().equals(password)) {
+                return usuario;
+            }
+        }
+
+        throw new IllegalArgumentException("Invalid email or password");
+    }
+    
+    
 }
