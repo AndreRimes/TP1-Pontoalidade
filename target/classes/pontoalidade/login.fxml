@@ -23,7 +23,7 @@
       <Label text="Senha" fx:id="senhaLabel" />
       <PasswordField fx:id="passwordField" promptText="Password" />
     </VBox>
-    <Hyperlink text="Não possui uma conta? Clique aqui" fx:id="signupLink" />
+    <Hyperlink text="Não possui uma conta? Clique aqui" fx:id="signupLink" onAction="#handleGoToSignUp" />
     <Button onAction="#handleClick" text="Login" fx:id="btn" />
   </VBox>
 </AnchorPane>

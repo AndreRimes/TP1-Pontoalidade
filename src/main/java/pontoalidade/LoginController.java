@@ -55,24 +55,26 @@ public class LoginController implements Initializable {
             Usuario user = organizacao.validateCredentials(email, password);
             
             
-            System.out.println("USER: " + user.getNome());
                 
             if(user instanceof Funcionario){
-                userDashBoard(event);
+                userDashBoard(event, user);
             }else {
                 organizationDashBoard(event);
             }
  
         } catch (IllegalArgumentException e) {
             System.out.println("SEnha errada filhao");
-            showAlert("Error", "An error occurred: " + e.getMessage());
         }
     }
     
     
-    private void userDashBoard(ActionEvent event){
+    private void userDashBoard(ActionEvent event, Usuario user){
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/pontoalidade/userDashBoard.fxml"));
+            
+            
+            UserDashboardController udc = new UserDashboardController(user, organizacao);
+            loader.setController(udc);
 
             Parent root = loader.load();
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -98,12 +100,24 @@ public class LoginController implements Initializable {
         }
     }
     
-    private void showAlert(String title, String message) {
-        Alert alert = new Alert(Alert.AlertType.ERROR);
-        alert.setTitle(title);
-        alert.setHeaderText(null);
-        alert.setContentText(message);
-        alert.showAndWait();
+  
+    
+     @FXML
+    private void handleGoToSignUp(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/pontoalidade/signup.fxml"));
+            
+            SignupController sg = new SignupController(this.organizacao);
+            loader.setController(sg);
+
+            Parent root = loader.load();
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
     
     @Override

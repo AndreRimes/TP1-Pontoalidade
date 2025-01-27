@@ -43,18 +43,23 @@ public class Dia {
         return false;
     }
     
-    public Dia(String data, String horarioInicio, String horarioFinal) {
+    public Dia(String data, String horarioInicio, String horarioFinal, Pausa pausa) {
         this.id = idCounter++;
         this.data = data;
         this.horarioInicio = horarioInicio;
         this.horarioFinal = horarioFinal;
-        this.horarioTotal = calcularHoras(horarioInicio, horarioFinal)-calcularHoras(pausa.getHorarioInicio(),pausa.getHorarioFim()); 
+
+        double totalHoras = calcularHoras(horarioInicio, horarioFinal);
+        if (pausa != null) {
+            totalHoras -= calcularHoras(pausa.getHorarioInicio(), pausa.getHorarioFim());
+        }
+        this.horarioTotal = totalHoras;
     }
 
     public double calcularHoras(String horarioInicio, String horarioFinal) {
         LocalTime start = LocalTime.parse(horarioInicio);
         LocalTime end = LocalTime.parse(horarioFinal);
-        
+
         Duration duration = Duration.between(start, end);
         return duration.toMinutes() / 60.0;
     }

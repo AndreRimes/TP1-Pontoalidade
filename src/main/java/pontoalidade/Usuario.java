@@ -8,6 +8,9 @@ package pontoalidade;
  *
  * @author berna
  */
+import java.time.LocalDate;
+import java.time.Month;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -94,11 +97,25 @@ public abstract class Usuario {
     }
 
     public final double calculaSalario() {
-        double totalHoras = 0.0;
-        for (Dia dia : diasTrabalhados) {
-            totalHoras += dia.getHorarioTotal();
-        }
+        double totalHoras = this.horasMes();
         return totalHoras * salarioPorHora;
+    }
+    
+    public final double horasMes(){
+        LocalDate today = LocalDate.now(); 
+        Month currentMonth = today.getMonth(); 
+
+        double totalHoras = 0.0;
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+
+        for (Dia dia : diasTrabalhados) {
+            LocalDate diaDate = LocalDate.parse(dia.getData(), formatter); 
+            if (diaDate.getMonth() == currentMonth) {
+                totalHoras += dia.getHorarioTotal();
+            }
+        }
+        
+        return totalHoras;
     }
 
     @Override
