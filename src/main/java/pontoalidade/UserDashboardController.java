@@ -2,6 +2,7 @@ package pontoalidade;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.animation.Timeline;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -16,6 +17,8 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Modality; 
 import javafx.stage.Stage;
+import javafx.animation.KeyFrame;
+import javafx.util.Duration;
 
 
 public class UserDashboardController implements Initializable {
@@ -41,14 +44,33 @@ public class UserDashboardController implements Initializable {
     @FXML
     private Label salarioEstimado;
     
+    @FXML
+    private Label hour;
+
+    @FXML
+    private Button countBtn;
+
+    @FXML
+    private Button pauseBtn;
+
+    @FXML
+    private Button terminarBtn;
+    
+    private Timeline timer;
+    private int seconds = 0; 
+    private boolean isRunning = false;
+    
     private Funcionario usuarioLogado;
     
     private Organizacao org;
+    
+    private Dia currentDay;
 
-    public UserDashboardController(Usuario usuarioLogado, Organizacao org) {
+    public UserDashboardController(Usuario usuarioLogado, Organizacao org, Dia cd) {
         if(usuarioLogado instanceof Funcionario){
            this.usuarioLogado = (Funcionario) usuarioLogado; 
         }
+        this.currentDay = cd;
         this.org = org;
     }
     
@@ -63,6 +85,75 @@ public class UserDashboardController implements Initializable {
         hoursColumn.prefWidthProperty().bind(table.widthProperty().multiply(0.33));
         actionColumn.prefWidthProperty().bind(table.widthProperty().multiply(0.33));
         
+        this.updateRowData();
+        
+
+       this.name.setText(this.usuarioLogado.getNome());
+       this.salarioEstimado.setText("Salario estimado: " + String.valueOf(this.usuarioLogado.calculaSalario())); 
+       this.horasMes.setText("Horas trabalhadas no mes: " + String.valueOf(this.usuarioLogado.horasMes())); 
+       
+       if (currentDay != null && currentDay.getStatus() == Status.RUNNING) {
+            pauseBtn.setText("Pause");
+        } else if (currentDay != null && currentDay.getStatus() == Status.PAUSED) {
+            pauseBtn.setText("Continue");
+        }
+       
+        this.disableBtns();
+       
+       
+        if (currentDay != null) {
+            if (null != currentDay.getStatus()) switch (currentDay.getStatus()) {
+                case RUNNING:{
+                    java.time.LocalTime startTime = java.time.LocalTime.parse(
+                            currentDay.getHorarioInicio(),
+                            java.time.format.DateTimeFormatter.ofPattern("HH:mm")
+                    );      java.time.LocalTime now = java.time.LocalTime.now();
+                    int elapsedSeconds = (int) java.time.Duration.between(startTime, now).getSeconds();
+                    setTimerValue(elapsedSeconds); 
+                    isRunning = true;
+                    startTimer(); 
+                    break;
+                    }
+                case ENDED:
+                    countBtn.setDisable(true);
+                    pauseBtn.setDisable(true);
+                    terminarBtn.setDisable(true);
+                    break;
+                case PAUSED:{
+                    java.time.LocalTime startTime = java.time.LocalTime.parse(
+                            currentDay.getHorarioInicio(),
+                            java.time.format.DateTimeFormatter.ofPattern("HH:mm")
+                    );      java.time.LocalTime pauseTime = java.time.LocalTime.parse(
+                            currentDay.getPausa().getHorarioInicio(),
+                            java.time.format.DateTimeFormatter.ofPattern("HH:mm")
+                    );      int elapsedSeconds = (int) java.time.Duration.between(startTime, pauseTime).getSeconds();
+                    setTimerValue(elapsedSeconds); 
+                        break;
+                    }
+                default:
+                    break;
+            }
+        }
+
+       
+       initializeTimer();
+       
+       countBtn.setOnAction(e -> startTimer());
+
+       pauseBtn.setOnAction(e -> togglePauseResume());
+
+       terminarBtn.setOnAction(e -> endDay());
+    }
+    
+    private void disableBtns(){ 
+        if (currentDay != null && currentDay.getStatus() == Status.ENDED) {
+           countBtn.setDisable(true);
+           pauseBtn.setDisable(true);
+           terminarBtn.setDisable(true);
+       }
+    }
+    
+    private void updateRowData(){
         ObservableList<RowData> dias = FXCollections.observableArrayList();
 
         for (Dia dia : this.usuarioLogado.getDiasTrabalhados()) {
@@ -71,12 +162,116 @@ public class UserDashboardController implements Initializable {
         }
 
         table.setItems(dias);
+    }
+    
+     private void initializeTimer() {
+        timer = new Timeline(new KeyFrame(Duration.seconds(1), e -> updateTimer()));
+        timer.setCycleCount(Timeline.INDEFINITE); 
+    }
 
-       this.name.setText(this.usuarioLogado.getNome());
-       this.salarioEstimado.setText("Salario estimado: " + String.valueOf(this.usuarioLogado.calculaSalario())); 
-       this.horasMes.setText("Horas trabalhadas no mes: " + String.valueOf(this.usuarioLogado.calculaSalario()));        
+    private void startTimer() {
+        if (currentDay == null) {
+            String currentDate = java.time.LocalDate.now()
+                                    .format(java.time.format.DateTimeFormatter.ofPattern("dd/MM/yyyy"));
 
+            String currentTime = java.time.LocalTime.now()
+                                    .format(java.time.format.DateTimeFormatter.ofPattern("HH:mm"));
+
+            Dia cd = new Dia(currentDate, currentTime, null, null);
+            
+            this.usuarioLogado.addDiaTrabalhado(cd);
+            
+            this.currentDay = cd;
+            countBtn.setDisable(true);
+            isRunning = true;
+            timer.play();
+        }
         
+    }
+
+    private void togglePauseResume() {
+    if (isRunning) {
+        pauseTimer();
+        pauseBtn.setText("Continue");
+    } else {
+        resumeTimer();
+        pauseBtn.setText("Pause");
+    }
+}
+
+    
+
+    private void pauseTimer() {
+    if (isRunning && this.currentDay != null) {
+        this.currentDay.setStatus(Status.PAUSED);
+        
+        String currentTime = java.time.LocalTime.now()
+                                .format(java.time.format.DateTimeFormatter.ofPattern("HH:mm"));
+        
+        Pausa p = new Pausa(currentTime, null);
+        this.currentDay.setPausa(p);
+        
+        isRunning = false;
+        timer.pause();
+    }
+}
+
+    private void resumeTimer() {
+        if (!isRunning && this.currentDay != null) {
+            this.currentDay.setStatus(Status.RUNNING);
+
+            String currentTime = java.time.LocalTime.now()
+                                    .format(java.time.format.DateTimeFormatter.ofPattern("HH:mm"));
+
+
+            this.currentDay.getPausa().setHorarioFinal(currentTime);
+            this.currentDay.getPausa().setHorarioTotal();
+
+            System.out.println(this.currentDay.getPausa().getHorarioTotal());
+            isRunning = true;
+            timer.play();
+        }
+}
+
+
+    private void endDay() {        
+        if(this.currentDay == null){
+            return;
+        }
+        String currentTime = java.time.LocalTime.now()
+                                    .format(java.time.format.DateTimeFormatter.ofPattern("HH:mm"));
+        
+        this.currentDay.endDia(currentTime);
+        this.updateRowData();
+        timer.stop();
+        isRunning = false;
+        seconds = 0;
+        this.disableBtns();
+        updateTimer();
+        setTimerValue(0);
+    }
+    
+    public void setTimerValue(int initialSeconds) {
+        this.seconds = initialSeconds;
+        updateTimerLabel();
+    }
+    
+    private void updateTimerLabel() {
+        int hrs = seconds / 3600;
+        int mins = (seconds % 3600) / 60;
+        int secs = seconds % 60;
+
+        hour.setText(String.format("%02d:%02d:%02d", hrs, mins, secs));
+    }
+
+    private void updateTimer() {
+        seconds++;
+
+        int hrs = seconds / 3600;
+        int mins = (seconds % 3600) / 60;
+        int secs = seconds % 60;
+
+        hour.setText(String.format("%02d:%02d:%02d", hrs, mins, secs));
     }
 
     public static class RowData {

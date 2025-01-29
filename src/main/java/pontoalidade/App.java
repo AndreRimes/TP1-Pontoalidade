@@ -25,11 +25,11 @@ public class App extends Application {
         
         Dia dia1 = new Dia("25/01/2025", "08:00", "16:00", null);
         Dia dia2 = new Dia("26/01/2025", "09:00", "17:00", null);
-        Dia dia3 = new Dia("27/01/2025", "10:00", "17:00", null);
+//        Dia dia3 = new Dia("27/01/2025", "10:00", "17:00", null);
         
         andre.addDiaTrabalhado(dia1);
         andre.addDiaTrabalhado(dia2);
-        andre.addDiaTrabalhado(dia3);
+//        andre.addDiaTrabalhado(dia3);
         
         organizacao.addUsuario(andre);
         

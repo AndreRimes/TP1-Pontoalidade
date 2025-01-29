@@ -9,8 +9,10 @@ pontoalidade\JustificativaController.class
 pontoalidade\Funcionario.class
 pontoalidade\Usuario.class
 pontoalidade\Pausa.class
+pontoalidade\UserDashboardController$1.class
 pontoalidade\Justificativa.class
 pontoalidade\Main.class
+pontoalidade\Status.class
 pontoalidade\UserProfileController.class
 pontoalidade\UserDashboardController.class
 pontoalidade\Dia.class

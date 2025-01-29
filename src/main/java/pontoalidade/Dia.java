@@ -7,6 +7,12 @@ package pontoalidade;
 import java.time.LocalTime;
 import java.time.Duration;
 
+enum Status {
+    RUNNING,
+    PAUSED,
+    ENDED,
+}
+
 public class Dia {
     private static int idCounter = 1;
     private int id;
@@ -16,6 +22,7 @@ public class Dia {
     private double horarioTotal;
     private Falta falta;
     private Pausa pausa; 
+    private Status status;
     
     
     public Pausa getPausa() {
@@ -48,10 +55,14 @@ public class Dia {
         this.data = data;
         this.horarioInicio = horarioInicio;
         this.horarioFinal = horarioFinal;
-
-        double totalHoras = calcularHoras(horarioInicio, horarioFinal);
-        if (pausa != null) {
-            totalHoras -= calcularHoras(pausa.getHorarioInicio(), pausa.getHorarioFim());
+        this.status = Status.RUNNING;
+        
+        double totalHoras = 0.0;
+        if(horarioFinal != null){
+            totalHoras = calcularHoras(horarioInicio, horarioFinal);
+            if (pausa != null) {
+                totalHoras -= calcularHoras(pausa.getHorarioInicio(), pausa.getHorarioFim());
+            }
         }
         this.horarioTotal = totalHoras;
     }
@@ -61,7 +72,19 @@ public class Dia {
         LocalTime end = LocalTime.parse(horarioFinal);
 
         Duration duration = Duration.between(start, end);
-        return duration.toMinutes() / 60.0;
+        
+        double aux = 0;
+        if(this.getPausa() != null) {
+            aux = this.getPausa().getHorarioTotal();            
+        }
+        
+        return (duration.toMinutes() / 60.0) - aux;
+    }
+    
+    public void endDia(String horarioFinal){
+        this.horarioFinal = horarioFinal;
+        this.status = status.ENDED;
+        this.horarioTotal = calcularHoras(horarioInicio, horarioFinal);
     }
     
     public int getId() {
@@ -72,6 +95,14 @@ public class Dia {
         return data;
     }
 
+    public void setStatus(Status status) {
+        this.status = status;
+    }
+
+    public Status getStatus() {
+        return status;
+    }
+    
     public void setData(String data) {
         this.data = data;
     }

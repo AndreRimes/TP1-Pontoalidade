@@ -16,7 +16,7 @@ public class Pausa {
     private final int id;
     private String horarioInicio;
     private String horarioFinal;
-    private String horarioTotal;
+    private double horarioTotal = 0;
     private Dia dia;
 
     public Pausa(String horarioInicio, String horarioFinal) {
@@ -33,6 +33,20 @@ public class Pausa {
         return duration.toMinutes() / 60.0;
     }
     
+    public void setHorarioTotal(){    
+        this.horarioTotal +=calcularHoras(horarioInicio, horarioFinal);
+    }
+    
+    public double getHorarioTotal(){
+        return this.horarioTotal;
+    }
+    
+    
+
+    public void setHorarioFinal(String horarioFinal) {
+        this.horarioFinal = horarioFinal;
+    }
+ 
     public int getId() {
         return id;
     }

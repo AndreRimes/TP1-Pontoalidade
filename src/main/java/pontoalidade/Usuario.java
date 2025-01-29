@@ -101,6 +101,20 @@ public abstract class Usuario {
         return totalHoras * salarioPorHora;
     }
     
+    public final Dia findToday() {
+        LocalDate today = LocalDate.now(); 
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        String todayFormatted = today.format(formatter);
+
+        for (Dia dia : diasTrabalhados) {
+            if (dia.getData().equals(todayFormatted)) {
+                return dia;
+            }
+        }
+
+        return null;
+    }
+    
     public final double horasMes(){
         LocalDate today = LocalDate.now(); 
         Month currentMonth = today.getMonth(); 

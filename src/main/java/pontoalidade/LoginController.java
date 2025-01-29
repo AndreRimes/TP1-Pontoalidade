@@ -73,7 +73,7 @@ public class LoginController implements Initializable {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/pontoalidade/userDashBoard.fxml"));
             
             
-            UserDashboardController udc = new UserDashboardController(user, organizacao);
+            UserDashboardController udc = new UserDashboardController(user, organizacao, user.findToday());
             loader.setController(udc);
 
             Parent root = loader.load();
