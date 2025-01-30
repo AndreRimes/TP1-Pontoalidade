@@ -124,7 +124,7 @@ public abstract class Usuario {
 
         for (Dia dia : diasTrabalhados) {
             LocalDate diaDate = LocalDate.parse(dia.getData(), formatter); 
-            if (diaDate.getMonth() == currentMonth) {
+            if (dia.getStatus() == Status.ENDED && diaDate.getMonth() == currentMonth) {
                 totalHoras += dia.getHorarioTotal();
             }
         }

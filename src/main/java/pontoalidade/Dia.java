@@ -66,6 +66,8 @@ public class Dia {
         }
         this.horarioTotal = totalHoras;
     }
+    
+    
 
     public double calcularHoras(String horarioInicio, String horarioFinal) {
         LocalTime start = LocalTime.parse(horarioInicio);
