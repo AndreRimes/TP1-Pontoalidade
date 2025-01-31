@@ -1,3 +1,4 @@
+pontoalidade\OrganizacaoDashboardController$1.class
 pontoalidade\ChooseOrgController.class
 pontoalidade\SignupController.class
 pontoalidade\App.class
@@ -6,6 +7,7 @@ pontoalidade\UserProfileController$RowData.class
 pontoalidade\Falta.class
 module-info.class
 pontoalidade\JustificativaController.class
+pontoalidade\Router.class
 pontoalidade\Funcionario.class
 pontoalidade\Usuario.class
 pontoalidade\Pausa.class

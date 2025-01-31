@@ -5,8 +5,12 @@ import javafx.scene.control.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.HBox;
 import java.net.URL;
+import java.util.Iterator;
 import java.util.ResourceBundle;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 
 public class OrganizacaoDashboardController implements Initializable {
 
@@ -14,45 +18,120 @@ public class OrganizacaoDashboardController implements Initializable {
     public TableColumn<Employee, String> nameCol;
     public TableColumn<Employee, String> emailCol;
     public TableColumn<Employee, String> cpfCol;
-    public TableColumn<Employee, Button> btnCol;
+    public TableColumn<Employee, Void> btnCol;
+    
+    @FXML
+    private Label nameOrg;
+    
+    @FXML
+    private Label cnpjLabel;
+    
+    @FXML
+    private Label senha;
+    
+    @FXML
+    private Button senhaBtn;
+    
+    private Organizacao org;
+    
+    private Administrador usuarioLogado;
 
+    public OrganizacaoDashboardController(Organizacao org, Administrador userlogado) {
+        this.org = org;
+        this.usuarioLogado = userlogado;
+    }
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         nameCol.setCellValueFactory(new PropertyValueFactory<>("name"));
         emailCol.setCellValueFactory(new PropertyValueFactory<>("email"));
         cpfCol.setCellValueFactory(new PropertyValueFactory<>("cpf"));
-        btnCol.setCellValueFactory(new PropertyValueFactory<>("button"));
         
+        btnCol.setCellFactory(param -> new TableCell<>() {
+            private final Button deleteButton = new Button("Deletar");
+            private final Button editButton = new Button("Ver Perfil");
+            private final HBox buttonsBox = new HBox(5, editButton, deleteButton);
+
+            {
+                deleteButton.setOnAction(event -> {
+                    Employee employee = getTableView().getItems().get(getIndex());
+                    deleteUser(employee.getCpf(), event);
+                });
+
+                editButton.setOnAction(event -> {
+                    Employee employee = getTableView().getItems().get(getIndex());
+                    Router router = new Router();
+                    router.userProfile(event);
+                });
+            }
+
+            @Override
+            protected void updateItem(Void item, boolean empty) {
+                super.updateItem(item, empty);
+                if (empty) {
+                    setGraphic(null);
+                } else {
+                    setGraphic(buttonsBox);
+                }
+            }
+        });
+
         nameCol.prefWidthProperty().bind(tabel.widthProperty().multiply(0.25));
         cpfCol.prefWidthProperty().bind(tabel.widthProperty().multiply(0.25));
         emailCol.prefWidthProperty().bind(tabel.widthProperty().multiply(0.25));
         btnCol.prefWidthProperty().bind(tabel.widthProperty().multiply(0.25));
-        
-        
 
-        ObservableList<Employee> employees = FXCollections.observableArrayList(
-            new Employee("John Doe", "johndoe@example.com", "123.456.789-00"),
-            new Employee("Jane Smith", "janesmith@example.com", "987.654.321-00"),
-            new Employee("Mark Johnson", "markjohnson@example.com", "192.837.465-00")
-        );
+        this.nameOrg.setText(this.org.getNome());
+        this.cnpjLabel.setText(this.org.getCnpj());
 
+        this.updateTable();
+    }
+    
+    private final void updateTable() {
+        ObservableList<Employee> employees = FXCollections.observableArrayList();
+        for (Usuario usuario : org.getUsuarios()) {
+            employees.add(new Employee(usuario.getNome(), usuario.getEmail(), usuario.getCpf()));
+        }
         tabel.setItems(employees);
+    }
+
+    @FXML
+    private final void handleMostrarSenha() {
+        if ("Esconder Senha".equals(senhaBtn.getText())) {
+            senha.setText("Senha da organizacao: *******");
+            senhaBtn.setText("Mostrar senha");
+        } else {
+            senha.setText("Senha da organizacao: " + this.org.getPassword());
+            senhaBtn.setText("Esconder Senha");
+        }
+    }
+
+    public final void deleteUser(String cpf, ActionEvent event) {
+        Iterator<Usuario> iterator = org.getUsuarios().iterator();
+
+        while (iterator.hasNext()) {
+            Usuario user = iterator.next();
+            if (cpf.equals(user.getCpf())) {
+                iterator.remove();
+                if (user.getId() == usuarioLogado.getId()) {
+                    Router router = new Router();
+                    router.login(event, org);
+                }
+                this.updateTable();
+                break;
+            }
+        }
     }
 
     public static class Employee {
         private String name;
         private String email;
         private String cpf;
-        private Button button;
 
         public Employee(String name, String email, String cpf) {
             this.name = name;
             this.email = email;
             this.cpf = cpf;
-            this.button = new Button("Deletar");
-            this.button.setOnAction(event -> {
-                System.out.println("Action for " + name);
-            });
         }
 
         public String getName() {
@@ -65,10 +144,6 @@ public class OrganizacaoDashboardController implements Initializable {
 
         public String getCpf() {
             return cpf;
-        }
-
-        public Button getButton() {
-            return button;
         }
     }
 }
