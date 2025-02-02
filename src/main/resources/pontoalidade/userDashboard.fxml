@@ -41,6 +41,7 @@
              <TableColumn fx:id="dateColumn" text="Data" />
              <TableColumn fx:id="hoursColumn" text="Horas Trabalhadas" />
              <TableColumn fx:id="actionColumn" text="Acao" />
+             <TableColumn fx:id="justificationColumn" text="Justificativa" />
           </columns>
       </TableView> 
   </HBox>

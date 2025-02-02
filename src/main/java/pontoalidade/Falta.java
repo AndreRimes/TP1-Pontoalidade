@@ -18,6 +18,7 @@ public class Falta {
     public Falta(String data) {
         this.id = ++idCounter;
         this.data = data;
+        this.justificativa = null;
     }
             
     public int getId() {
@@ -34,5 +35,9 @@ public class Falta {
     
     public void setJustificativa(Justificativa justificativa){
         this.justificativa = justificativa;
+    }
+    
+    public Justificativa getJustificativa(){
+        return justificativa;
     }
 }

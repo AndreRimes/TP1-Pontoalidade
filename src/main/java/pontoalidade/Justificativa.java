@@ -8,15 +8,25 @@ package pontoalidade;
  *
  * @author Rios_01
  */
+
+enum StatusJustificativa {
+    Aceita,
+    Recusada,
+    Enviada,
+    Pendente
+}
+
 public class Justificativa {
     private static int idCounter = 0;
     private final int id;
     private String descricao;
     private Falta falta;
+    private StatusJustificativa status;
 
     public Justificativa(String descricao) {
         this.id = ++idCounter;
         this.descricao = descricao;
+        this.status = StatusJustificativa.Pendente;
     }
 
     public int getId() {
@@ -24,7 +34,7 @@ public class Justificativa {
     }
 
     public String getData() {
-        return falta.getData();
+        return falta != null ? falta.getData() : "Data não disponível";
     }
 
     public String getDescricao() {
@@ -34,6 +44,20 @@ public class Justificativa {
     public void setDescricao(String descricao) {
         this.descricao = descricao;
     }
-    
-    
+
+    public StatusJustificativa getStatus() {
+        return status;
+    }
+
+    public void setStatus(StatusJustificativa status) {
+        this.status = status;
+    }
+
+    public Falta getFalta() {
+        return falta;
+    }
+
+    public void setFalta(Falta falta) {
+        this.falta = falta;
+    }
 }
