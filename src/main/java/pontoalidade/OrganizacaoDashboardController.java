@@ -60,8 +60,16 @@ public class OrganizacaoDashboardController implements Initializable {
 
                 editButton.setOnAction(event -> {
                     Employee employee = getTableView().getItems().get(getIndex());
+                    
+                    Usuario userFound = null;
+                    for(Usuario user : org.getUsuarios()){
+                        if(user.getCpf().equals(employee.getCpf())){
+                            userFound = user;
+                        }
+                    }
+                    
                     Router router = new Router();
-                    router.userProfile(event);
+                    router.userProfile(event, userFound, usuarioLogado);
                 });
             }
 

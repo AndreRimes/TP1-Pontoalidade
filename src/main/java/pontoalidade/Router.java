@@ -7,6 +7,7 @@ package pontoalidade;
 import java.io.IOException;
 import java.lang.ModuleLayer.Controller;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
@@ -40,27 +41,28 @@ public class Router {
     }
     
    
-    public void userDashboard(ActionEvent event, Funcionario usuarioLogado, Organizacao org, Dia currentDay ){
+    public void userDashboard(Event event, Funcionario usuarioLogado, Organizacao org, Dia currentDay ){
         UserDashboardController userDashboardController = new UserDashboardController(usuarioLogado, org, currentDay);
         
         redirect("userDashBoard", userDashboardController, event);
     }
     
-    public void orgDashboard(ActionEvent event, Organizacao org, Administrador user){
+    public void orgDashboard(Event event, Organizacao org, Administrador user){
         OrganizacaoDashboardController organizacaoDashboardController = new OrganizacaoDashboardController(org, user);
 
         redirect("organizacaoDashboard", organizacaoDashboardController, event);
     }
     
-    public void userProfile(ActionEvent event){
+    public void userProfile(ActionEvent event, Usuario user, Usuario userLogado){
+        UserProfileController controller = new UserProfileController(user, userLogado);
         
-        redirect("userProfile", null, event);
+        redirect("userProfile", controller , event);
     }
     
     
     
     
-    private void redirect(String url,  Initializable controller, ActionEvent event ){
+    private void redirect(String url,  Initializable controller, Event event ){
          try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/pontoalidade/" + url +  ".fxml"));
             
