@@ -23,6 +23,9 @@ public class Pausa {
         this.id = ++idCounter;
         this.horarioInicio = horarioInicio;
         this.horarioFinal = horarioFinal;
+        if(horarioFinal != null){
+            this.setHorarioTotal();
+        }
     }
 
     public double calcularHoras(String horarioInicio, String horarioFinal) {

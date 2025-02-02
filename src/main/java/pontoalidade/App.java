@@ -21,15 +21,25 @@ public class App extends Application {
         organizacao.addUsuario(new Funcionario("Carlos Silva", "carlos.silva@techunb.com", "111.222.333-44", "senha123", 20.0, organizacao));
         organizacao.addUsuario(new Funcionario("Ana Pereira", "ana.pereira@techunb.com", "555.666.777-88", "senha456", 25.0, organizacao));
         organizacao.addUsuario(new Funcionario("João Souza", "joao.souza@techunb.com", "999.000.111-22", "senha789", 18.5, organizacao));
-        Funcionario andre = new Funcionario("Andre", "andre.2004.rimes@gmail.com", "05311988126", "senha10", 20, organizacao);
+        Administrador andre = new Administrador("Andre", "andre.2004.rimes@gmail.com", "05311988126", "senha10", 20, organizacao);
+        
+        
         
         Dia dia1 = new Dia("25/01/2025", "08:00", "16:00", null);
+        dia1.setStatus(Status.ENDED);
         Dia dia2 = new Dia("26/01/2025", "09:00", "17:00", null);
-//        Dia dia3 = new Dia("27/01/2025", "10:00", "17:00", null);
+        dia2.setStatus(Status.ENDED);
+        
+        // dia esta finalizado [x]
+        // dia esta pausado [x]
+        // dia esta contando 
+        
+        Dia dia3 = new Dia("29/01/2025", "06:00", null, null);
+        dia3.setStatus(Status.RUNNING);
         
         andre.addDiaTrabalhado(dia1);
         andre.addDiaTrabalhado(dia2);
-//        andre.addDiaTrabalhado(dia3);
+        andre.addDiaTrabalhado(dia3);
         
         organizacao.addUsuario(andre);
         

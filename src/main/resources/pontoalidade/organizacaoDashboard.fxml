@@ -13,7 +13,7 @@
 
 
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pontoalidade.OrganizacaoDashboardController">
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml/1">
     <stylesheets>
          <URL value="@../styles/organizacaoDashboard.css"/>
     </stylesheets>
@@ -24,8 +24,8 @@
       <Label text="Nome da Organizacao" fx:id="nameOrg"  />
       <Label text="CNPJ da empresa" fx:id="cnpjLabel" />
        <HBox spacing="10">
-          <Label text="*******" fx:id="senha" />
-         <Button text="Mostrar senha" fx:id="senhaBtn" />
+          <Label text="Senha da organizacao: *******" fx:id="senha" />
+         <Button onAction="#handleMostrarSenha" text="Mostrar senha" fx:id="senhaBtn"  styleClass="pointer-cursor-btn" />
        </HBox>
     </VBox>
   </HBox>

@@ -13,12 +13,17 @@
 
 
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pontoalidade.UserProfileController">
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml/1">
     <stylesheets>
          <URL value="@../styles/organizacaoDashboard.css"/>
     </stylesheets>
     
  <VBox spacing="10" fx:id="main" AnchorPane.topAnchor="0.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+     
+   <HBox fx:id="backDiv" alignment="TOP_LEFT" spacing="10">
+       <SVGPath onMouseClicked="#handleBackClick" fx:id="backArrow" content="M10 0 L0 5 L10 10 Z" fill="white" />
+   </HBox>   
+    
   <HBox fx:id="topHor" VBox.vgrow="NEVER" spacing="10">
     <VBox spacing="10" fx:id="info" HBox.hgrow="ALWAYS">  
       <Label text="Nome do Usuario" fx:id="nameOrg"  />

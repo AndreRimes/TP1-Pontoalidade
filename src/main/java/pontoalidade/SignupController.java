@@ -1,18 +1,12 @@
 package pontoalidade;
 
-import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.TextField;
 import javafx.scene.control.PasswordField;
-import javafx.stage.Stage;
 
 public class SignupController implements Initializable {
 
@@ -60,39 +54,14 @@ public class SignupController implements Initializable {
             }
         }
         
-        try {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/pontoalidade/chooseorg.fxml"));
-
-        ChooseOrgController cho = new ChooseOrgController(organizacao, name, password, cpf, email);
-        loader.setController(cho);
-
-        Parent root = loader.load();
-
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        Scene scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        Router router = new Router();
+        router.chooseOrg(event, organizacao, name, password, cpf, email);
     }
     
     @FXML
     private void handleGoToLogin(ActionEvent event) {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/pontoalidade/login.fxml"));
-            
-            LoginController lg = new LoginController(organizacao);
-            loader.setController(lg);
-
-            Parent root = loader.load();
-            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            Scene scene = new Scene(root);
-            stage.setScene(scene);
-            stage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+       Router router = new Router();
+       router.login(event, organizacao);
     }
 
     @Override

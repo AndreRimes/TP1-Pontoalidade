@@ -92,10 +92,7 @@ public class UserDashboardController implements Initializable {
         
         this.updateRowData();
         
-
-       this.name.setText(this.usuarioLogado.getNome());
-       this.salarioEstimado.setText("Salario estimado: " + String.valueOf(this.usuarioLogado.calculaSalario())); 
-       this.horasMes.setText("Horas trabalhadas no mes: " + String.valueOf(this.usuarioLogado.horasMes())); 
+        this.updateUserInfo();
        
        if (currentDay != null && currentDay.getStatus() == Status.RUNNING) {
             pauseBtn.setText("Pause");
@@ -103,8 +100,8 @@ public class UserDashboardController implements Initializable {
             pauseBtn.setText("Continue");
         }
        
-        this.disableBtns();
-       
+        
+        initializeTimer();
        
         if (currentDay != null) {
             if (null != currentDay.getStatus()) switch (currentDay.getStatus()) {
@@ -116,7 +113,7 @@ public class UserDashboardController implements Initializable {
                     int elapsedSeconds = (int) java.time.Duration.between(startTime, now).getSeconds();
                     setTimerValue(elapsedSeconds); 
                     isRunning = true;
-                    startTimer(); 
+                    this.startTimer();
                     break;
                     }
                 case ENDED:
@@ -128,10 +125,12 @@ public class UserDashboardController implements Initializable {
                     java.time.LocalTime startTime = java.time.LocalTime.parse(
                             currentDay.getHorarioInicio(),
                             java.time.format.DateTimeFormatter.ofPattern("HH:mm")
-                    );      java.time.LocalTime pauseTime = java.time.LocalTime.parse(
+                    );      
+                    java.time.LocalTime pauseTime = java.time.LocalTime.parse(
                             currentDay.getPausa().getHorarioInicio(),
                             java.time.format.DateTimeFormatter.ofPattern("HH:mm")
-                    );      int elapsedSeconds = (int) java.time.Duration.between(startTime, pauseTime).getSeconds();
+                    );      
+                    int elapsedSeconds = (int) java.time.Duration.between(startTime, pauseTime).getSeconds();
                     setTimerValue(elapsedSeconds); 
                         break;
                     }
@@ -139,15 +138,20 @@ public class UserDashboardController implements Initializable {
                     break;
             }
         }
-
-       
-       initializeTimer();
-       
+        
+       this.disableBtns();
+             
        countBtn.setOnAction(e -> startTimer());
 
        pauseBtn.setOnAction(e -> togglePauseResume());
 
        terminarBtn.setOnAction(e -> endDay());
+    }
+    
+    private void updateUserInfo(){
+       this.name.setText(this.usuarioLogado.getNome());
+       this.salarioEstimado.setText("Salario estimado: " + String.valueOf(this.usuarioLogado.calculaSalario())); 
+       this.horasMes.setText("Horas trabalhadas no mes: " + String.valueOf(this.usuarioLogado.horasMes())); 
     }
     
     private void disableBtns(){ 
@@ -160,7 +164,6 @@ public class UserDashboardController implements Initializable {
     
 public void updateRowData() {
     ObservableList<RowData> dias = FXCollections.observableArrayList();
-
     for (Dia dia : this.usuarioLogado.getDiasTrabalhados()) {
         if (dia.getHorarioTotal() < usuarioLogado.getMetaHorasDiaria()) {
             if (dia.getFalta() == null) {
@@ -170,6 +173,7 @@ public void updateRowData() {
 
         RowData rd = new RowData(dia.getData(), dia.getHorarioTotal(), usuarioLogado.getMetaHorasDiaria(), dia.getFalta(), this);
         dias.add(rd);
+
     }
 
     table.setItems(dias);
@@ -201,6 +205,8 @@ public void updateRowData() {
             timer.play();
         }
         
+       isRunning = true;
+       timer.play();   
     }
 
     private void togglePauseResume() {
@@ -257,6 +263,7 @@ public void updateRowData() {
         
         this.currentDay.endDia(currentTime);
         this.updateRowData();
+        this.updateUserInfo();
         timer.stop();
         isRunning = false;
         seconds = 0;
