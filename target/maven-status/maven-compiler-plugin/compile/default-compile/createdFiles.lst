@@ -5,6 +5,7 @@ pontoalidade\App.class
 pontoalidade\OrganizacaoDashboardController$Employee.class
 pontoalidade\UserProfileController$RowData.class
 pontoalidade\Falta.class
+pontoalidade\StatusJustificativa.class
 module-info.class
 pontoalidade\JustificativaController.class
 pontoalidade\Router.class
