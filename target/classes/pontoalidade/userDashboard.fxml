@@ -34,8 +34,11 @@
         </HBox>
         <Button text="Comçar a contar" fx:id="countBtn" HBox.hgrow="ALWAYS"/>
     </VBox>
-</HBox>
-
+  </HBox>
+  <HBox spacing="10" fx:id="monthYearSelection" VBox.vgrow="NEVER" alignment="CENTER">
+    <ComboBox fx:id="monthComboBox" prefWidth="120" promptText="Select Month" />
+    <ComboBox fx:id="yearComboBox" prefWidth="120" promptText="Select Year" />
+  </HBox>
   <HBox fx:id="botHor" VBox.vgrow="ALWAYS" spacing="10">
       <TableView fx:id="table" HBox.hgrow="ALWAYS">
           <columns>

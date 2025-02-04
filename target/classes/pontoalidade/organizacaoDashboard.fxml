@@ -30,6 +30,11 @@
     </VBox>
   </HBox>
 
+  <HBox spacing="10" VBox.vgrow="NEVER" alignment="CENTER">
+    <Label text="Busca:" fx:id="busca"  />
+    <TextField fx:id="searchName" promptText="Buscar funcionário"/>
+  </HBox>
+
   <HBox fx:id="botHor" VBox.vgrow="ALWAYS" spacing="10">
       <TableView fx:id="tabel" HBox.hgrow="ALWAYS">
           <columns>
