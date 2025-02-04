@@ -3,10 +3,7 @@ package pontoalidade;
 import java.net.URL;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.List;
 import java.util.ResourceBundle;
-import java.util.Set;
-import java.util.TreeSet;
 import java.util.stream.Collectors;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -124,18 +121,7 @@ public class UserProfileController implements Initializable {
         if(this.user instanceof Administrador){
             return;
         }
-         
-            // if(dia.getFalta() != null && dia.getFalta().getJustificativa() != null){
-            //     status = "Status da justificativa: " +  dia.getFalta().getJustificativa().getStatus();
-            // }else if(dia.getFalta() != null && dia.getFalta().getJustificativa() == null){
-            //     status = "Justificativa Pendente";
-            // }else {
-            //     status = "Status do dia: " + dia.getStatus();
-            // }
-            
-        
-        ObservableList<RowData> data = FXCollections.observableArrayList();
-
+          
         String selectedMonth = monthComboBox.getValue();
         String selectedYear = yearComboBox.getValue();
 
@@ -153,7 +139,17 @@ public class UserProfileController implements Initializable {
                     LocalDate date = LocalDate.parse(dia.getData(), formatter);
                     return date.getMonthValue() == monthNumber && date.getYear() == Integer.parseInt(selectedYear);
                 })
-                .map(dia -> new RowData(dia.getData(), dia.getHorarioTotal()))
+                .map(dia -> {
+                        String status;
+                        if (dia.getFalta() != null && dia.getFalta().getJustificativa() != null) {
+                            status = "Status da justificativa: " + dia.getFalta().getJustificativa().getStatus();
+                        } else if (dia.getFalta() != null && dia.getFalta().getJustificativa() == null) {
+                            status = "Justificativa Pendente";
+                        } else {
+                            status = "Status do dia: " + dia.getStatus();
+                        }
+                        return new RowData(dia.getData(), dia.getHorarioTotal(), status, dia, this.user, this);
+                    })
                 .collect(Collectors.toList()));
 
             table.setItems(data);
