@@ -20,6 +20,15 @@
     -fx-padding: 10px;
 }
 
+#logoutBtn {
+    -fx-border-radius: 10px;
+    -fx-border-color: #0AFF9D;
+    -fx-background-color: transparent;
+    -fx-text-fill: white;
+    -fx-padding: 7px 8px 7px 8px; /* top right bottom left */
+    -fx-cursor: pointer
+}
+
 
 #nameOrg {
     -fx-text-fill:white;
@@ -30,6 +39,16 @@
 #cnpjLabel {
     -fx-text-fill:white;
     -fx-font-size: 24px;
+}
+
+#salarioLabel {
+    -fx-text-fill:white;
+    -fx-font-size: 20px;
+}
+
+#horasLabel {
+    -fx-text-fill:white;
+    -fx-font-size: 20px;
 }
 
 #senha {

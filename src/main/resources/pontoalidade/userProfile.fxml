@@ -29,6 +29,9 @@
       <Label text="Nome do Usuario" fx:id="nameOrg"  />
       <Label text="CPF do Usuario" fx:id="cnpjLabel" />
       <Label text="Email do Usuario" fx:id="emailLabel" />
+      <Label text="Salario por hora: " fx:id="salarioLabel" />
+      <Label text="Meta de horas: " fx:id="horasLabel" />
+
     </VBox>
   </HBox>
   

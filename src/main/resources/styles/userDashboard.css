@@ -61,6 +61,15 @@
     -fx-font-weight: bold;
 }
 
+#logoutBtn {
+    -fx-border-radius: 10px;
+    -fx-border-color: #0AFF9D;
+    -fx-background-color: transparent;
+    -fx-text-fill: white;
+    -fx-padding: 7px 8px 7px 8px; /* top right bottom left */
+    -fx-cursor: pointer
+}
+
 #pauseBtn {
     -fx-pref-width: 200px;
     -fx-border-radius: 10px;

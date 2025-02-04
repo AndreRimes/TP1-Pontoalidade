@@ -11,46 +11,42 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.shape.SVGPath?>
 
-
-
 <AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml/1" >
     <stylesheets>
          <URL value="@../styles/userDashboard.css"/>
     </stylesheets>
     
- <VBox spacing="10" fx:id="main" AnchorPane.topAnchor="0.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
-  <HBox fx:id="topHor" VBox.vgrow="NEVER" spacing="10">
-    <VBox spacing="10" fx:id="info" HBox.hgrow="ALWAYS">
-        <Label fx:id="name" text="Nome do Usuario" />
-        <Label fx:id="horasMes" text="Horas trabalhadas no mes 0" />
-        <Label fx:id="salarioEstimado" text="Salario estimado: R$0" />
-        <Label fx:id="mes" text="Mes Atual: " />
-    </VBox>
-    <VBox fx:id="clock" HBox.hgrow="ALWAYS" alignment="CENTER" spacing="30">
-        <Label fx:id="hour" text="00:00" />
-        <HBox spacing="20" fx:id="btns" HBox.hgrow="ALWAYS" alignment="CENTER">
-            <Button fx:id="pauseBtn" text="pausar" />
-            <Button fx:id="terminarBtn" text="terminar" />
+    <VBox spacing="10" fx:id="main" AnchorPane.topAnchor="0.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+        <HBox fx:id="topHor" VBox.vgrow="NEVER" spacing="10">
+            <VBox spacing="10" fx:id="info" HBox.hgrow="ALWAYS">
+                <Label fx:id="name" text="Nome do Usuario" />
+                <Label fx:id="horasMes" text="Horas trabalhadas no mes 0" />
+                <Label fx:id="salarioEstimado" text="Salario estimado: R$0" />
+                <Label fx:id="mes" text="Mes Atual: " />
+            </VBox>
+            <VBox fx:id="clock" HBox.hgrow="ALWAYS" alignment="CENTER" spacing="30">
+                <Label fx:id="hour" text="00:00" />
+                <HBox spacing="20" fx:id="btns" HBox.hgrow="ALWAYS" alignment="CENTER">
+                    <Button fx:id="pauseBtn" text="pausar" />
+                    <Button fx:id="terminarBtn" text="terminar" />
+                </HBox>
+                <Button text="Comçar a contar" fx:id="countBtn" HBox.hgrow="ALWAYS"/>
+            </VBox>
+            <Button fx:id="logoutBtn" text="Logout" HBox.hgrow="NEVER" alignment="CENTER_RIGHT" onAction="#handleLogout" />
         </HBox>
-        <Button text="Comçar a contar" fx:id="countBtn" HBox.hgrow="ALWAYS"/>
+        <HBox spacing="10" fx:id="monthYearSelection" VBox.vgrow="NEVER" alignment="CENTER">
+            <ComboBox fx:id="monthComboBox" prefWidth="120" promptText="Select Month" />
+            <ComboBox fx:id="yearComboBox" prefWidth="120" promptText="Select Year" />
+        </HBox>
+        <HBox fx:id="botHor" VBox.vgrow="ALWAYS" spacing="10">
+            <TableView fx:id="table" HBox.hgrow="ALWAYS">
+                <columns>
+                    <TableColumn fx:id="dateColumn" text="Data" />
+                    <TableColumn fx:id="hoursColumn" text="Horas Trabalhadas" />
+                    <TableColumn fx:id="actionColumn" text="Acao" />
+                    <TableColumn fx:id="justificationColumn" text="Justificativa" />
+                </columns>
+            </TableView> 
+        </HBox>
     </VBox>
-  </HBox>
-  <HBox spacing="10" fx:id="monthYearSelection" VBox.vgrow="NEVER" alignment="CENTER">
-    <ComboBox fx:id="monthComboBox" prefWidth="120" promptText="Select Month" />
-    <ComboBox fx:id="yearComboBox" prefWidth="120" promptText="Select Year" />
-  </HBox>
-  <HBox fx:id="botHor" VBox.vgrow="ALWAYS" spacing="10">
-      <TableView fx:id="table" HBox.hgrow="ALWAYS">
-          <columns>
-             <TableColumn fx:id="dateColumn" text="Data" />
-             <TableColumn fx:id="hoursColumn" text="Horas Trabalhadas" />
-             <TableColumn fx:id="actionColumn" text="Acao" />
-             <TableColumn fx:id="justificationColumn" text="Justificativa" />
-          </columns>
-      </TableView> 
-  </HBox>
-</VBox>
-    
-    
-     
 </AnchorPane>

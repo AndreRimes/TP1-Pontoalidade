@@ -125,6 +125,12 @@ public class OrganizacaoDashboardController implements Initializable {
         filteredEmployees = new FilteredList<>(employees, p -> true);
         tabel.setItems(filteredEmployees);
     }
+    
+    @FXML
+    public void handleLogout(ActionEvent event){
+        Router router = new Router();
+        router.login(event, org);   
+    }
 
     @FXML
     private final void handleMostrarSenha() {

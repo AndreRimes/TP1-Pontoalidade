@@ -28,6 +28,7 @@
          <Button onAction="#handleMostrarSenha" text="Mostrar senha" fx:id="senhaBtn"  styleClass="pointer-cursor-btn" />
        </HBox>
     </VBox>
+   <Button fx:id="logoutBtn" text="Logout" HBox.hgrow="NEVER" alignment="CENTER_RIGHT" onAction="#handleLogout" />
   </HBox>
 
   <HBox spacing="10" VBox.vgrow="NEVER" alignment="CENTER">

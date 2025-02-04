@@ -19,6 +19,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.transform.Affine;
 import javafx.stage.Modality; 
 import javafx.stage.Stage;
 
@@ -55,6 +56,12 @@ public class UserProfileController implements Initializable {
     @FXML 
     private ComboBox<String> yearComboBox;
     
+    @FXML
+    private Label horasLabel;
+    
+    @FXML
+    private Label salarioLabel;
+    
     private Usuario usuarioLogado;
     
     private Usuario user;
@@ -83,6 +90,15 @@ public class UserProfileController implements Initializable {
         this.nameOrg.setText(this.user.getNome());
         this.cnpjLabel.setText(this.user.getCpf());
         this.emailLabel.setText(this.user.getEmail());
+        
+        
+        
+        this.salarioLabel.setText("Salario por hora: " + this.user.getSalarioPorHora());
+        if (user instanceof Administrador) {
+            this.horasLabel.setText("Administrador");
+        } else {
+            this.horasLabel.setText("Meta de horas diarias" + ((Funcionario) user).getMetaHorasDiaria());
+        } 
         
         monthComboBox.setItems(FXCollections.observableArrayList(
             "January", "February", "March", "April", "May", "June",

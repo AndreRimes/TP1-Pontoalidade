@@ -6,6 +6,7 @@ import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -39,6 +40,7 @@ public class UserDashboardController implements Initializable {
     @FXML private ComboBox<String> monthComboBox;
     @FXML private ComboBox<Integer> yearComboBox;
     @FXML private Label mes;
+    @FXML private Button logoutBtn;
     
     // State variables
     private Timeline timer;
@@ -65,6 +67,12 @@ public class UserDashboardController implements Initializable {
         initializeTimer();
         configureButtonActions();
         initializeComboBoxes();
+    }
+    
+    @FXML
+    public void handleLogout(ActionEvent event){
+        Router router = new Router();
+        router.login(event, org);   
     }
 
     // Initialization of table columns and row data
