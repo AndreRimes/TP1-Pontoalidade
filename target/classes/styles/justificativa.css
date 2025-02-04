@@ -13,6 +13,31 @@
     -fx-font-size: 25px;
 }
 
+#nameLabel{
+    -fx-text-fill: white;
+    -fx-font-size: 20px;  
+}
+
+#acceptButton {
+    -fx-pref-width: 200px;
+    -fx-border-radius: 10px;
+    -fx-border-color: #0AFF9D;
+    -fx-background-color: transparent;
+    -fx-text-fill: white;
+    -fx-padding: 7px 8px 7px 8px; /* top right bottom left */
+    -fx-cursor: pointer
+}
+
+#refuseButton {
+    -fx-pref-width: 200px;
+    -fx-border-radius: 10px;
+    -fx-border-color: #0AFF9D;
+    -fx-background-color: transparent;
+    -fx-text-fill: white;
+    -fx-padding: 7px 8px 7px 8px; /* top right bottom left */
+    -fx-cursor: pointer
+}
+
 
 #descriptionField {
 /*    -fx-text-fill : white;*/

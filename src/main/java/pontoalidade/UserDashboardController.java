@@ -315,8 +315,10 @@ public static class RowData {
 
         if (falta != null && falta.getJustificativa() != null) {
             this.justificationStatus = falta.getJustificativa().getStatus();
-        } else {
+        } else if(falta != null) {
             this.justificationStatus = StatusJustificativa.Pendente;
+        }else{
+            this.justificationStatus = null;
         }
     }
 

@@ -30,12 +30,18 @@ public class App extends Application {
         Dia dia2 = new Dia("26/01/2025", "09:00", "17:00", null);
         dia2.setStatus(Status.ENDED);
         
-        // dia esta finalizado [x]
-        // dia esta pausado [x]
-        // dia esta contando 
         
-        Dia dia3 = new Dia("29/01/2025", "06:00", null, null);
-        dia3.setStatus(Status.RUNNING);
+        Dia dia3 = new Dia("29/01/2025", "06:00", "12:00", null);
+        
+        Falta falta = new Falta("29/01/2025");
+        dia3.setFalta(falta);
+        
+        Justificativa justificativa = new Justificativa("Descriscao muito braba slk tiozao!!!");
+        falta.setJustificativa(justificativa);
+        justificativa.setStatus(StatusJustificativa.Enviada);
+        
+        
+        dia3.setStatus(Status.ENDED);
         
         andre.addDiaTrabalhado(dia1);
         andre.addDiaTrabalhado(dia2);
