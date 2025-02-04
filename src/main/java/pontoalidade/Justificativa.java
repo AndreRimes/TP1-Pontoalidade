@@ -26,7 +26,7 @@ public class Justificativa {
     public Justificativa(String descricao) {
         this.id = ++idCounter;
         this.descricao = descricao;
-        this.status = StatusJustificativa.Pendente;
+        this.status = StatusJustificativa.Enviada;
     }
 
     public int getId() {

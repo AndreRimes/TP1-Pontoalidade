@@ -27,17 +27,21 @@ public class App extends Application {
         
         
         
-        Dia dia1 = new Dia("25/01/2025", "08:00", "16:00", null);
+        Dia dia1 = new Dia("25/01/2025", "08:00", "16:00", null, andre );
         dia1.setStatus(Status.ENDED);
-        Dia dia2 = new Dia("26/01/2025", "09:00", "17:00", null);
+        Dia dia2 = new Dia("26/02/2025", "09:00", "17:00", null, andre);
         dia2.setStatus(Status.ENDED);
+       
         
-        // dia esta finalizado [x]
-        // dia esta pausado [x]
-        // dia esta contando 
+        Dia dia3 = new Dia("29/02/2025", "06:00", "10:00", null, andre);
+        dia3.setStatus(Status.ENDED);
         
-        Dia dia3 = new Dia("29/01/2025", "06:00", null, null);
-        dia3.setStatus(Status.RUNNING);
+        Falta falta = new Falta("29/02/2025");
+        dia3.setFalta(falta);
+        
+       Justificativa just = new Justificativa("AAAAAAAAAAAAAAAAAAAAAAAA");
+       just.setStatus(StatusJustificativa.Enviada);
+       falta.setJustificativa(just);
         
         andre.addDiaTrabalhado(dia1);
         andre.addDiaTrabalhado(dia2);
@@ -47,6 +51,7 @@ public class App extends Application {
         bernardo.addDiaTrabalhado(dia2);
         
         organizacao.addUsuario(andre);
+        organizacao.addUsuario(adm);
         
         
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/pontoalidade/signup.fxml"));

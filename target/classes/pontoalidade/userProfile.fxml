@@ -42,6 +42,7 @@
           <columns>
              <TableColumn fx:id="dateColumn" text="Data" />
              <TableColumn fx:id="hoursColumn" text="Horas Trabalhadas" />
+             <TableColumn fx:id="statusColumn" text="Status" />
              <TableColumn fx:id="actionColumn" text="Acao" />
           </columns>
       </TableView> 

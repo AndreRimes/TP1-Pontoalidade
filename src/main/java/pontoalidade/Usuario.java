@@ -8,13 +8,9 @@ package pontoalidade;
  *
  * @author berna
  */
-import java.time.LocalDate;
-import java.time.Month;
-import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.List;
 
-public abstract class Usuario {
+
+public abstract class Usuario implements Salario{
     private static int idCounter = 0; 
     private final int id;
     private String nome;
@@ -22,8 +18,8 @@ public abstract class Usuario {
     private String cpf;
     private String senha;
     protected double salarioPorHora;
-    private List<Dia> diasTrabalhados;
-    public Organizacao organizacao; // Associating user with an organization
+    public Organizacao organizacao; 
+
 
     public Usuario(String nome, String email, String cpf, String senha, double salarioPorHora, Organizacao organizacao) {
         this.id = ++idCounter; 
@@ -32,7 +28,6 @@ public abstract class Usuario {
         this.cpf = cpf;
         this.senha = senha;
         this.salarioPorHora = salarioPorHora;
-        this.diasTrabalhados = new ArrayList<>();
         this.organizacao = organizacao;
     }
     
@@ -86,51 +81,6 @@ public abstract class Usuario {
 
     public void setSalarioPorHora(double salarioPorHora) {
         this.salarioPorHora = salarioPorHora;
-    }
-
-    public List<Dia> getDiasTrabalhados() {
-        return diasTrabalhados;
-    }
-
-    public void addDiaTrabalhado(Dia dia) {
-        diasTrabalhados.add(dia);
-    }
-
-    public final double calculaSalario() {
-        double totalHoras = this.horasMes();
-        return totalHoras * salarioPorHora;
-    }
-    
-    public final Dia findToday() {
-        LocalDate today = LocalDate.now(); 
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-        String todayFormatted = today.format(formatter);
-
-        for (Dia dia : diasTrabalhados) {
-            if (dia.getData().equals(todayFormatted)) {
-                return dia;
-            }
-        }
-
-        return null;
-    }
-    
-    public final double horasMes(){
-        LocalDate today = LocalDate.now(); 
-        Month currentMonth = today.getMonth(); 
-
-        double totalHoras = 0.0;
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-
-        for (Dia dia : diasTrabalhados) {
-            LocalDate diaDate = LocalDate.parse(dia.getData(), formatter); 
-            System.out.println("Checking Dia: " + dia.getData() + " - Status: " + dia.getStatus() + " - Horas: " + dia.getHorarioTotal());
-            if (dia.getStatus() == Status.ENDED && diaDate.getMonth() == currentMonth) {
-                totalHoras += dia.getHorarioTotal();
-            }
-        }
-        System.out.println("Total horas no mês: " + totalHoras);
-        return totalHoras;
     }
 
     @Override

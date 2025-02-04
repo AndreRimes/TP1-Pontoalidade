@@ -38,7 +38,8 @@ public class UserDashboardController implements Initializable {
     @FXML private Button terminarBtn;
     @FXML private ComboBox<String> monthComboBox;
     @FXML private ComboBox<Integer> yearComboBox;
-
+    @FXML private Label mes;
+    
     // State variables
     private Timeline timer;
     private int seconds = 0; 
@@ -154,6 +155,25 @@ public class UserDashboardController implements Initializable {
         disableBtns();
     }
 
+       terminarBtn.setOnAction(e -> endDay());
+    }
+    
+    private void updateUserInfo() {
+        this.name.setText(this.usuarioLogado.getNome());
+        this.salarioEstimado.setText("Salario estimado: " + String.valueOf(this.usuarioLogado.calcularSalario())); 
+        this.mes.setText("Mes atual: " + obterMesAtual()); 
+        this.horasMes.setText("Horas trabalhadas no mês: " + String.valueOf(this.usuarioLogado.horasMes())); 
+    }
+
+    private String obterMesAtual() {
+        java.time.LocalDate hoje = java.time.LocalDate.now();
+        java.time.format.TextStyle estilo = java.time.format.TextStyle.FULL;
+        java.util.Locale locale = new java.util.Locale("pt", "BR");
+
+        return hoje.getMonth().getDisplayName(estilo, locale);
+    }
+
+    private void disableBtns(){ 
     // Disable buttons when day is ended
     private void disableBtns() {
         if (currentDay != null && currentDay.getStatus() == Status.ENDED) {
@@ -202,7 +222,8 @@ public class UserDashboardController implements Initializable {
             String currentTime = java.time.LocalTime.now()
                                     .format(java.time.format.DateTimeFormatter.ofPattern("HH:mm"));
 
-            Dia cd = new Dia(currentDate, currentTime, null, null);
+            Dia cd = new Dia(currentDate, currentTime, null, null, this.usuarioLogado);
+            
             this.usuarioLogado.addDiaTrabalhado(cd);
             this.currentDay = cd;
             countBtn.setDisable(true);
@@ -303,51 +324,39 @@ public class UserDashboardController implements Initializable {
         hour.setText(String.format("%02d:%02d:%02d", hrs, mins, secs));
     }
 
+
     // RowData class for table representation
     public static class RowData {
-        private final String date;
-        private final double hours;
-        private final Button actionButton;
-        private final StatusJustificativa justificationStatus;
+    private final String date;
+    private final double hours;
+    private final Button actionButton;
+    private final String justificationStatus;
+    
+    
 
         public RowData(String date, double hours, double meta, Falta falta, UserDashboardController parentController) {
             this.date = date;
             this.hours = hours;
 
-            if (hours < meta && falta != null) {
-                this.actionButton = new Button("Justificar Falta");
-                this.actionButton.setOnAction(e -> openModal(falta, parentController));
-            } else {
-                this.actionButton = new Button("N/A");
-                this.actionButton.setDisable(true);
+        if (hours < meta || falta != null) {
+            this.actionButton = new Button("Justificar Falta");
+            
+            if(falta.getJustificativa() != null){
+                actionButton.setDisable(true);
             }
-
-            if (falta != null && falta.getJustificativa() != null) {
-                this.justificationStatus = falta.getJustificativa().getStatus();
-            } else {
-                this.justificationStatus = StatusJustificativa.Pendente;
-            }
+           
+            this.actionButton.setOnAction(e -> openModal(falta, parentController));
+        } else {
+            this.actionButton = new Button("N/A");
+            this.actionButton.setDisable(true);
         }
 
-        private void openModal(Falta falta, UserDashboardController parentController) {
-            try {
-                FXMLLoader loader = new FXMLLoader(App.class.getResource("JustificarFalta.fxml"));
-                Parent root = loader.load();
-
-                JustificarFaltaController controller = loader.getController();
-                controller.setFalta(falta);
-                controller.setParentController(parentController); 
-
-                Stage stage = new Stage();
-                stage.setTitle("Justificar Falta");
-                stage.setScene(new Scene(root));
-                stage.initModality(Modality.APPLICATION_MODAL);
-                stage.showAndWait();
-
-                parentController.updateRowData();
-            } catch (Exception ex) {
-                ex.printStackTrace();
-            }
+        if (falta != null && falta.getJustificativa() != null) {
+            this.justificationStatus = falta.getJustificativa().getStatus();
+        } else if(falta != null) {
+            this.justificationStatus = StatusJustificativa.Pendente;
+        }else{
+            this.justificationStatus = null;
         }
 
         public String getDate() { 
@@ -362,8 +371,11 @@ public class UserDashboardController implements Initializable {
             return actionButton; 
         }
 
-        public StatusJustificativa getJustificationStatus() { 
-            return justificationStatus; 
-        }
+    public Button getActionButton() { 
+        return actionButton; 
+    }
+
+    public String getJustificationStatus() { 
+        return justificationStatus; 
     }
 }

@@ -34,6 +34,11 @@
     -fx-font-weight: bold;
 }
 
+#mes {
+    -fx-text-fill:white;
+    -fx-font-size: 20px;
+}
+
 #horasMes {
     -fx-text-fill:white;
     -fx-font-size: 24px;
