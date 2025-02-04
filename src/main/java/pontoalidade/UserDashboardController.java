@@ -59,6 +59,9 @@ public class UserDashboardController implements Initializable {
     @FXML
     private Button terminarBtn;
     
+    @FXML
+    private Label mes;
+    
     private Timeline timer;
     private int seconds = 0; 
     private boolean isRunning = false;
@@ -148,12 +151,21 @@ public class UserDashboardController implements Initializable {
        terminarBtn.setOnAction(e -> endDay());
     }
     
-    private void updateUserInfo(){
-       this.name.setText(this.usuarioLogado.getNome());
-       this.salarioEstimado.setText("Salario estimado: " + String.valueOf(this.usuarioLogado.calculaSalario())); 
-       this.horasMes.setText("Horas trabalhadas no mes: " + String.valueOf(this.usuarioLogado.horasMes())); 
+    private void updateUserInfo() {
+        this.name.setText(this.usuarioLogado.getNome());
+        this.salarioEstimado.setText("Salario estimado: " + String.valueOf(this.usuarioLogado.calcularSalario())); 
+        this.mes.setText("Mes atual: " + obterMesAtual()); 
+        this.horasMes.setText("Horas trabalhadas no mês: " + String.valueOf(this.usuarioLogado.horasMes())); 
     }
-    
+
+    private String obterMesAtual() {
+        java.time.LocalDate hoje = java.time.LocalDate.now();
+        java.time.format.TextStyle estilo = java.time.format.TextStyle.FULL;
+        java.util.Locale locale = new java.util.Locale("pt", "BR");
+
+        return hoje.getMonth().getDisplayName(estilo, locale);
+    }
+
     private void disableBtns(){ 
         if (currentDay != null && currentDay.getStatus() == Status.ENDED) {
            countBtn.setDisable(true);
@@ -195,7 +207,7 @@ public void updateRowData() {
             String currentTime = java.time.LocalTime.now()
                                     .format(java.time.format.DateTimeFormatter.ofPattern("HH:mm"));
 
-            Dia cd = new Dia(currentDate, currentTime, null, null);
+            Dia cd = new Dia(currentDate, currentTime, null, null, this.usuarioLogado);
             
             this.usuarioLogado.addDiaTrabalhado(cd);
             
@@ -299,14 +311,19 @@ public static class RowData {
     private final String date;
     private final double hours;
     private final Button actionButton;
-    private final StatusJustificativa justificationStatus;
+    private final String justificationStatus;
 
     public RowData(String date, double hours, double meta, Falta falta, UserDashboardController parentController) {
         this.date = date;
         this.hours = hours;
 
-        if (hours < meta && falta != null) {
+        if (hours < meta || falta != null) {
             this.actionButton = new Button("Justificar Falta");
+            
+            if(falta.getJustificativa() != null){
+                actionButton.setDisable(true);
+            }
+           
             this.actionButton.setOnAction(e -> openModal(falta, parentController));
         } else {
             this.actionButton = new Button("N/A");
@@ -314,9 +331,11 @@ public static class RowData {
         }
 
         if (falta != null && falta.getJustificativa() != null) {
-            this.justificationStatus = falta.getJustificativa().getStatus();
-        } else {
-            this.justificationStatus = StatusJustificativa.Pendente;
+            this.justificationStatus = "" + falta.getJustificativa().getStatus();
+        } else if(falta != null) {
+            this.justificationStatus = "" + StatusJustificativa.Pendente;
+        }else{
+            this.justificationStatus = "";
         }
     }
 
@@ -353,7 +372,7 @@ public static class RowData {
         return actionButton; 
     }
 
-    public StatusJustificativa getJustificationStatus() { 
+    public String getJustificationStatus() { 
         return justificationStatus; 
     }
 }

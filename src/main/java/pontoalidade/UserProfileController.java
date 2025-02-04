@@ -47,6 +47,7 @@ public class UserProfileController implements Initializable {
     private Usuario user;
 
     public UserProfileController(Usuario user, Usuario usuarioLogado) {
+        System.out.println(user.getEmail());
         this.user = user;
         this.usuarioLogado = usuarioLogado;
     }
@@ -74,7 +75,8 @@ public class UserProfileController implements Initializable {
     private void handleBackClick(MouseEvent event){
         Router router = new Router();
         if(usuarioLogado instanceof Funcionario){
-            router.userDashboard(event, (Funcionario) usuarioLogado, usuarioLogado.getOrganizacao(),  usuarioLogado.findToday());
+            Funcionario func = (Funcionario) usuarioLogado;
+            router.userDashboard(event, func, usuarioLogado.getOrganizacao(),  func.findToday());
         }else{
             router.orgDashboard(event, user.getOrganizacao(), (Administrador) usuarioLogado);
         }
@@ -83,9 +85,19 @@ public class UserProfileController implements Initializable {
     private void updateTable(){
         ObservableList<RowData> data = FXCollections.observableArrayList();
         
-        for(Dia dia: this.user.getDiasTrabalhados()){
-            data.add(new RowData(dia.getData(), dia.getHorarioTotal()));
+        System.out.println(this.user instanceof Administrador);
+        
+        if(this.user instanceof Administrador){
+            return;
         }
+        
+        if (this.user instanceof Funcionario) {
+            Funcionario func = (Funcionario) this.user;
+            for (Dia dia : func.getDiasTrabalhados()) {
+                data.add(new RowData(dia.getData(), dia.getHorarioTotal()));
+            }
+        }
+
         
         table.setItems(data);
     }

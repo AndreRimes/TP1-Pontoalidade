@@ -24,6 +24,7 @@
         <Label fx:id="name" text="Nome do Usuario" />
         <Label fx:id="horasMes" text="Horas trabalhadas no mes 0" />
         <Label fx:id="salarioEstimado" text="Salario estimado: R$0" />
+        <Label fx:id="mes" text="Mes Atual: " />
     </VBox>
     <VBox fx:id="clock" HBox.hgrow="ALWAYS" alignment="CENTER" spacing="30">
         <Label fx:id="hour" text="00:00" />
