@@ -34,6 +34,9 @@ public class UserProfileController implements Initializable {
     private TableColumn<RowData, Button> actionColumn;
     
     @FXML
+    private TableColumn<RowData, String> statusColumn;
+    
+    @FXML
     private Label nameOrg;
     
     @FXML
@@ -41,7 +44,7 @@ public class UserProfileController implements Initializable {
     
     @FXML
     private Label emailLabel;
-    
+      
     private Usuario usuarioLogado;
     
     private Usuario user;
@@ -58,10 +61,12 @@ public class UserProfileController implements Initializable {
         dateColumn.setCellValueFactory(new PropertyValueFactory<>("date"));
         hoursColumn.setCellValueFactory(new PropertyValueFactory<>("hours"));
         actionColumn.setCellValueFactory(new PropertyValueFactory<>("actionButton"));
+        statusColumn.setCellValueFactory(new PropertyValueFactory<>("status"));
         
-        dateColumn.prefWidthProperty().bind(table.widthProperty().multiply(0.33));
-        hoursColumn.prefWidthProperty().bind(table.widthProperty().multiply(0.33));
-        actionColumn.prefWidthProperty().bind(table.widthProperty().multiply(0.33));
+        dateColumn.prefWidthProperty().bind(table.widthProperty().multiply(0.25));
+        hoursColumn.prefWidthProperty().bind(table.widthProperty().multiply(0.25));
+        statusColumn.prefWidthProperty().bind(table.widthProperty().multiply(0.25));
+        actionColumn.prefWidthProperty().bind(table.widthProperty().multiply(0.25));
         
         this.nameOrg.setText(this.user.getNome());
         this.cnpjLabel.setText(this.user.getCpf());
@@ -82,22 +87,29 @@ public class UserProfileController implements Initializable {
         }
     }
     
-    private void updateTable(){
+    public void updateTable(){
         ObservableList<RowData> data = FXCollections.observableArrayList();
-        
-        System.out.println(this.user instanceof Administrador);
-        
         if(this.user instanceof Administrador){
             return;
         }
         
-        if (this.user instanceof Funcionario) {
-            Funcionario func = (Funcionario) this.user;
-            for (Dia dia : func.getDiasTrabalhados()) {
-                data.add(new RowData(dia.getData(), dia.getHorarioTotal()));
-            }
-        }
 
+        if (this.user instanceof Funcionario) {
+
+            Funcionario func = (Funcionario) this.user;
+        for(Dia dia: func.getDiasTrabalhados()){
+            String status;
+            
+            if(dia.getFalta() != null && dia.getFalta().getJustificativa() != null){
+                status = "Status da justificativa: " +  dia.getFalta().getJustificativa().getStatus();
+            }else if(dia.getFalta() != null && dia.getFalta().getJustificativa() == null){
+                status = "Justificativa Pendente";
+            }else {
+                status = "Status do dia: " + dia.getStatus();
+            }
+            
+            data.add(new RowData(dia.getData(), dia.getHorarioTotal(), status, dia, this.user, this));
+            }
         
         table.setItems(data);
     }
@@ -105,13 +117,25 @@ public class UserProfileController implements Initializable {
     public static class RowData {
         private final String date;
         private final double hours;
+        private final String status;
+        private final Dia dia;
         private final Button actionButton;
+        private final Usuario user;
+        private final UserProfileController controller;
 
-        public RowData(String date, double hours) {
+        public RowData(String date, double hours, String status, Dia dia, Usuario user, UserProfileController controller) {
             this.date = date;
             this.hours = hours;
-            this.actionButton = new Button("Ver justificativa");
-            this.actionButton.setOnAction(e -> openModal());
+            this.dia = dia;
+            this.user = user;
+            this.status = status;
+            this.controller = controller;
+            if(dia.getFalta() != null && dia.getFalta().getJustificativa() != null){
+               this.actionButton = new Button("Ver justificativa");
+               this.actionButton.setOnAction(e -> openModal());
+            }else{
+                this.actionButton = null;
+            }
         }
 
         private void openModal() {
@@ -120,9 +144,12 @@ public class UserProfileController implements Initializable {
             Parent root = loader.load();
             
             
-            JustificativaController controller = loader.getController();  
+            JustificativaController controller = loader.getController();
             controller.setDate(date);
-            controller.setDescription("Descricao da falta");
+            controller.setDescription(this.dia.getFalta().getJustificativa().getDescricao());
+            controller.setName(this.user.getNome());
+            controller.setJusticativa(dia.getFalta().getJustificativa());
+            controller.setParentController(this.controller);
             
             
             Stage stage = new Stage();
@@ -137,6 +164,10 @@ public class UserProfileController implements Initializable {
         
         public String getDate() {
             return date;
+        }
+        
+        public String getStatus(){
+            return this.status;
         }
 
         public double getHours() {

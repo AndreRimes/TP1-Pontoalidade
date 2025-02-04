@@ -331,11 +331,11 @@ public static class RowData {
         }
 
         if (falta != null && falta.getJustificativa() != null) {
-            this.justificationStatus = "" + falta.getJustificativa().getStatus();
+            this.justificationStatus = falta.getJustificativa().getStatus();
         } else if(falta != null) {
-            this.justificationStatus = "" + StatusJustificativa.Pendente;
+            this.justificationStatus = StatusJustificativa.Pendente;
         }else{
-            this.justificationStatus = "";
+            this.justificationStatus = null;
         }
     }
 
