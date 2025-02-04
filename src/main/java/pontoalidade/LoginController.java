@@ -44,7 +44,8 @@ public class LoginController implements Initializable {
             Router router = new Router();
                   
             if(user instanceof Funcionario){
-                router.userDashboard(event, (Funcionario) user, organizacao, user.findToday());
+                Funcionario funcionario = (Funcionario) user;
+                router.userDashboard(event, funcionario, organizacao, funcionario.findToday());
             }else {
                 router.orgDashboard(event, organizacao, (Administrador) user);
             }

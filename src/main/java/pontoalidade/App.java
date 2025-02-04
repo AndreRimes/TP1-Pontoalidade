@@ -21,33 +21,34 @@ public class App extends Application {
         organizacao.addUsuario(new Funcionario("Carlos Silva", "carlos.silva@techunb.com", "111.222.333-44", "senha123", 20.0, organizacao));
         organizacao.addUsuario(new Funcionario("Ana Pereira", "ana.pereira@techunb.com", "555.666.777-88", "senha456", 25.0, organizacao));
         organizacao.addUsuario(new Funcionario("João Souza", "joao.souza@techunb.com", "999.000.111-22", "senha789", 18.5, organizacao));
-        Administrador andre = new Administrador("Andre", "andre.2004.rimes@gmail.com", "05311988126", "senha10", 20, organizacao);
+        
+        Funcionario andre = new Funcionario("Andre", "andre.2004.rimes@gmail.com", "0531198126", "senha10", 20, organizacao);
+        Administrador adm = new Administrador("andre", "andre.24.rimes@gmail.com", "0198126", "senha10", 20, organizacao);
         
         
         
-        Dia dia1 = new Dia("25/01/2025", "08:00", "16:00", null);
+        Dia dia1 = new Dia("25/01/2025", "08:00", "16:00", null, andre );
         dia1.setStatus(Status.ENDED);
-        Dia dia2 = new Dia("26/01/2025", "09:00", "17:00", null);
+        Dia dia2 = new Dia("26/02/2025", "09:00", "17:00", null, andre);
         dia2.setStatus(Status.ENDED);
+       
         
+        Dia dia3 = new Dia("29/02/2025", "06:00", "10:00", null, andre);
+        dia3.setStatus(Status.ENDED);
         
-        Dia dia3 = new Dia("29/01/2025", "06:00", "12:00", null);
-        
-        Falta falta = new Falta("29/01/2025");
+        Falta falta = new Falta("29/02/2025");
         dia3.setFalta(falta);
         
-        Justificativa justificativa = new Justificativa("Descriscao muito braba slk tiozao!!!");
-        falta.setJustificativa(justificativa);
-        justificativa.setStatus(StatusJustificativa.Enviada);
-        
-        
-        dia3.setStatus(Status.ENDED);
+       Justificativa just = new Justificativa("AAAAAAAAAAAAAAAAAAAAAAAA");
+       just.setStatus(StatusJustificativa.Enviada);
+       falta.setJustificativa(just);
         
         andre.addDiaTrabalhado(dia1);
         andre.addDiaTrabalhado(dia2);
         andre.addDiaTrabalhado(dia3);
         
         organizacao.addUsuario(andre);
+        organizacao.addUsuario(adm);
         
         
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/pontoalidade/signup.fxml"));

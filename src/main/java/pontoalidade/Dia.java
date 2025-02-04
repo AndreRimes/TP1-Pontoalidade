@@ -23,6 +23,7 @@ public class Dia {
     private Falta falta;
     private Pausa pausa; 
     private Status status;
+    private Funcionario user;
     
     
     public Pausa getPausa() {
@@ -50,12 +51,13 @@ public class Dia {
         return false;
     }
     
-    public Dia(String data, String horarioInicio, String horarioFinal, Pausa pausa) {
+    public Dia(String data, String horarioInicio, String horarioFinal, Pausa pausa, Funcionario user) {
         this.id = idCounter++;
         this.data = data;
         this.horarioInicio = horarioInicio;
         this.horarioFinal = horarioFinal;
         this.status = Status.RUNNING;
+        this.user = user;
         
         double totalHoras = 0.0;
         if(horarioFinal != null){
@@ -67,9 +69,7 @@ public class Dia {
         this.horarioTotal = totalHoras;
     }
     
-    
-
-    public double calcularHoras(String horarioInicio, String horarioFinal) {
+    private double calcularHoras(String horarioInicio, String horarioFinal) {
         LocalTime start = LocalTime.parse(horarioInicio);
         LocalTime end = LocalTime.parse(horarioFinal);
 
@@ -128,6 +128,10 @@ public class Dia {
     }
 
     public double getHorarioTotal() {
+        if(this.getFalta() != null && this.getFalta().getJustificativa() != null && this.getFalta().getJustificativa().getStatus() == StatusJustificativa.Aceita){
+            return this.user.getMetaHorasDiaria();
+        }
+        
         return horarioTotal;
     }
 
