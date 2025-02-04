@@ -11,6 +11,7 @@ import java.util.Iterator;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.collections.transformation.FilteredList;
 
 public class OrganizacaoDashboardController implements Initializable {
 
@@ -32,9 +33,16 @@ public class OrganizacaoDashboardController implements Initializable {
     @FXML
     private Button senhaBtn;
     
+    @FXML
+    private TextField searchName;
+    
     private Organizacao org;
     
     private Administrador usuarioLogado;
+    
+    private ObservableList<Employee> employees = FXCollections.observableArrayList();
+    
+    private FilteredList<Employee> filteredEmployees;
 
     public OrganizacaoDashboardController(Organizacao org, Administrador userlogado) {
         this.org = org;
@@ -91,16 +99,31 @@ public class OrganizacaoDashboardController implements Initializable {
 
         this.nameOrg.setText(this.org.getNome());
         this.cnpjLabel.setText(this.org.getCnpj());
+        
+        filteredEmployees = new FilteredList<>(employees, p -> true);
+        tabel.setItems(filteredEmployees);
 
+        searchName.textProperty().addListener((observable, oldValue, newValue) -> {
+            filteredEmployees.setPredicate(employee -> {
+                if (newValue == null || newValue.isEmpty()) {
+                    return true;
+                }
+                String lowerCaseFilter = newValue.toLowerCase();
+                return employee.getName().toLowerCase().contains(lowerCaseFilter);
+            });
+        });
+        
         this.updateTable();
     }
     
     private final void updateTable() {
-        ObservableList<Employee> employees = FXCollections.observableArrayList();
+        employees.clear();
         for (Usuario usuario : org.getUsuarios()) {
             employees.add(new Employee(usuario.getNome(), usuario.getEmail(), usuario.getCpf()));
         }
-        tabel.setItems(employees);
+        
+        filteredEmployees = new FilteredList<>(employees, p -> true);
+        tabel.setItems(filteredEmployees);
     }
 
     @FXML

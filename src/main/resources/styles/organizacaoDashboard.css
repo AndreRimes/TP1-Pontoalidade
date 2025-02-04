@@ -50,5 +50,9 @@
     -fx-font-size: 24px;
 }
 
+#busca {
+    -fx-text-fill: white
+}
+
 
 
