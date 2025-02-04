@@ -21,7 +21,9 @@ public class App extends Application {
         organizacao.addUsuario(new Funcionario("Carlos Silva", "carlos.silva@techunb.com", "111.222.333-44", "senha123", 20.0, organizacao));
         organizacao.addUsuario(new Funcionario("Ana Pereira", "ana.pereira@techunb.com", "555.666.777-88", "senha456", 25.0, organizacao));
         organizacao.addUsuario(new Funcionario("João Souza", "joao.souza@techunb.com", "999.000.111-22", "senha789", 18.5, organizacao));
-        Funcionario andre = new Funcionario("Andre", "andre.2004.rimes@gmail.com", "05311988126", "senha10", 20, organizacao);
+        Administrador andre = new Administrador("Andre", "andre.2004.rimes@gmail.com", "05311988126", "senha10", 20, organizacao);
+        Funcionario bernardo = new Funcionario("Bernardo", "be@gmail.com", "12345678900", "senha1", 12, organizacao);
+        organizacao.addUsuario(bernardo);
         
         
         
@@ -40,6 +42,9 @@ public class App extends Application {
         andre.addDiaTrabalhado(dia1);
         andre.addDiaTrabalhado(dia2);
         andre.addDiaTrabalhado(dia3);
+        
+        bernardo.addDiaTrabalhado(dia1);
+        bernardo.addDiaTrabalhado(dia2);
         
         organizacao.addUsuario(andre);
         
