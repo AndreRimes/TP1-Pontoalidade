@@ -27,7 +27,8 @@
         <VBox fx:id="senhaBox" alignment="CENTER" spacing="2">
             <Label text="Senha" fx:id="senhaLabel" />
             <PasswordField fx:id="passwordField" promptText="Password" />
-        </VBox>            
+        </VBox> 
+        <Label fx:id="senhaError" text="" style="-fx-text-fill: red;" />           
         <Button text="Entrar" fx:id="btn" onAction="#handleButtonClick" />
     </VBox>
 </AnchorPane>

@@ -17,6 +17,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.PasswordField;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
+import javafx.scene.control.Label;
 
 /**
  * FXML Controller class
@@ -38,6 +39,8 @@ public class ChooseOrgController implements Initializable {
     @FXML
     private PasswordField passwordField;
     
+    @FXML
+    private Label senhaError;
     
     public ChooseOrgController(Organizacao organizacao, String userName, String userPassword, String userCPF, String userEmail) {
         this.organizacao = organizacao;
@@ -93,6 +96,9 @@ public class ChooseOrgController implements Initializable {
             } catch (IOException e) {
                 e.printStackTrace();
             }     
+        }
+        else{
+            senhaError.setText("Senha da Organização errada!");
         }
     }
         

@@ -1,5 +1,6 @@
 package pontoalidade;
 
+import javafx.scene.control.TableRow;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.animation.KeyFrame;
@@ -39,6 +40,10 @@ public class UserDashboardController implements Initializable {
     @FXML private ComboBox<String> monthComboBox;
     @FXML private ComboBox<Integer> yearComboBox;
 
+    //CSS Initialization
+    
+    
+    
     // State variables
     private Timeline timer;
     private int seconds = 0; 
@@ -68,17 +73,30 @@ public class UserDashboardController implements Initializable {
 
     // Initialization of table columns and row data
     private void initializeTable() {
+        
         dateColumn.setCellValueFactory(new PropertyValueFactory<>("date"));
+        
+        
+        
         hoursColumn.setCellValueFactory(new PropertyValueFactory<>("hours"));
+       
+        
         actionColumn.setCellValueFactory(new PropertyValueFactory<>("actionButton"));
+       
+        
         justificationColumn.setCellValueFactory(new PropertyValueFactory<>("justificationStatus"));
+        
 
         dateColumn.prefWidthProperty().bind(table.widthProperty().multiply(0.30));
         hoursColumn.prefWidthProperty().bind(table.widthProperty().multiply(0.30));
         actionColumn.prefWidthProperty().bind(table.widthProperty().multiply(0.20));
         justificationColumn.prefWidthProperty().bind(table.widthProperty().multiply(0.20));
+        
+
+        
 
         updateRowData();
+        
     }
     
     private void initializeComboBoxes() {

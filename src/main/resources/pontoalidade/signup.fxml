@@ -21,18 +21,27 @@
             <Label text="Email: " fx:id="emailLabel"/>
             <TextField fx:id="emailField" promptText="Email" />
         </VBox>
+        <Label fx:id="emailError" text="" style="-fx-text-fill: red;" />  
        <VBox fx:id="nameBox" alignment="CENTER" spacing="2">
         <Label fx:id="nameLabel" text="Nome Completo: " />
         <TextField fx:id="nameField" promptText="Nome Completo" />
        </VBox>
+       <Label fx:id="nameError" text="" style="-fx-text-fill: red;" />
        <VBox fx:id="cpfBox" alignment="CENTER" spacing="2">
         <Label fx:id="cpfLabel" text="CPF " />
         <TextField fx:id="cpfField" promptText="CPF: " />
        </VBox>
+       <Label fx:id="cpfError" text="" style="-fx-text-fill: red;" />
         <VBox fx:id="senhaBox" alignment="CENTER" spacing="2">
             <Label text="Senha" fx:id="senhaLabel" />
             <PasswordField fx:id="passwordField" promptText="Password" />
-        </VBox>        
+        </VBox>  
+         <Label fx:id="passwordLabel" text="" style="-fx-text-fill: red;" />
+        <VBox fx:id="senhadoisBox" alignment="CENTER" spacing="2">
+            <Label text="Reescreva a senha" fx:id="senhadoisLabel" />
+            <PasswordField fx:id="passworddoisField" promptText="Rewrite your password" />
+        </VBox>
+         <Label fx:id="errorLabel" text="" style="-fx-text-fill: red;" />  
         <Hyperlink text="Já possui uma conta? Clique aqui" fx:id="signupLink" onAction="#handleGoToLogin" />
         <Button text="Cadastrar" fx:id="btn" onAction="#handleSignup" />
     </VBox>
