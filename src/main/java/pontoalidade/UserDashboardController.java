@@ -92,10 +92,10 @@ public class UserDashboardController implements Initializable {
     
     private void initializeComboBoxes() {
         monthComboBox.setItems(FXCollections.observableArrayList(
-            "January", "February", "March", "April", "May", "June", "July", 
-            "August", "September", "October", "November", "December"
+            "Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", 
+            "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"
         ));
-        monthComboBox.setValue("January");
+        monthComboBox.setValue("Janeiro");
 
         yearComboBox.setItems(FXCollections.observableArrayList(2020, 2021, 2022, 2023, 2024, 2025));
         yearComboBox.setValue(2025);
@@ -129,18 +129,18 @@ public class UserDashboardController implements Initializable {
     
     private int getMonthIndex(String monthName) {
         switch (monthName) {
-            case "January": return 1;
-            case "February": return 2;
-            case "March": return 3;
-            case "April": return 4;
-            case "May": return 5;
-            case "June": return 6;
-            case "July": return 7;
-            case "August": return 8;
-            case "September": return 9;
-            case "October": return 10;
-            case "November": return 11;
-            case "December": return 12;
+            case "Janeiro": return 1;
+            case "Fevereiro": return 2;
+            case "Março": return 3;
+            case "Abril": return 4;
+            case "Maio": return 5;
+            case "Junho": return 6;
+            case "Julho": return 7;
+            case "Agosto": return 8;
+            case "Setembro": return 9;
+            case "Outubro": return 10;
+            case "Novembro": return 11;
+            case "Dezembro": return 12;
             default: return 1;
         }
     }
