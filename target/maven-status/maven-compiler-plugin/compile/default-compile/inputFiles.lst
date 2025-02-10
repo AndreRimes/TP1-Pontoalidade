@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 C:\Users\berna\OneDrive\Documents\NetBeansProjects\TP1-Pontoalidade\src\main\java\pontoalidade\Organizacao.java
 C:\Users\berna\OneDrive\Documents\NetBeansProjects\TP1-Pontoalidade\src\main\java\pontoalidade\LoginController.java
 C:\Users\berna\OneDrive\Documents\NetBeansProjects\TP1-Pontoalidade\src\main\java\pontoalidade\Dia.java
@@ -19,3 +20,25 @@ C:\Users\berna\OneDrive\Documents\NetBeansProjects\TP1-Pontoalidade\src\main\jav
 C:\Users\berna\OneDrive\Documents\NetBeansProjects\TP1-Pontoalidade\src\main\java\pontoalidade\UserDashboardController.java
 C:\Users\berna\OneDrive\Documents\NetBeansProjects\TP1-Pontoalidade\src\main\java\pontoalidade\UserProfileController.java
 C:\Users\berna\OneDrive\Documents\NetBeansProjects\TP1-Pontoalidade\src\main\java\pontoalidade\SignupController.java
+=======
+C:\Users\Rios_01\Documents\NetBeansProjects\TP1-Pontoalidade\src\main\java\pontoalidade\App.java
+C:\Users\Rios_01\Documents\NetBeansProjects\TP1-Pontoalidade\src\main\java\pontoalidade\Pausa.java
+C:\Users\Rios_01\Documents\NetBeansProjects\TP1-Pontoalidade\src\main\java\pontoalidade\SignupController.java
+C:\Users\Rios_01\Documents\NetBeansProjects\TP1-Pontoalidade\src\main\java\pontoalidade\Router.java
+C:\Users\Rios_01\Documents\NetBeansProjects\TP1-Pontoalidade\src\main\java\pontoalidade\Funcionario.java
+C:\Users\Rios_01\Documents\NetBeansProjects\TP1-Pontoalidade\src\main\java\pontoalidade\Organizacao.java
+C:\Users\Rios_01\Documents\NetBeansProjects\TP1-Pontoalidade\src\main\java\pontoalidade\Dia.java
+C:\Users\Rios_01\Documents\NetBeansProjects\TP1-Pontoalidade\src\main\java\pontoalidade\Usuario.java
+C:\Users\Rios_01\Documents\NetBeansProjects\TP1-Pontoalidade\src\main\java\module-info.java
+C:\Users\Rios_01\Documents\NetBeansProjects\TP1-Pontoalidade\src\main\java\pontoalidade\ChooseOrgController.java
+C:\Users\Rios_01\Documents\NetBeansProjects\TP1-Pontoalidade\src\main\java\pontoalidade\OrganizacaoDashboardController.java
+C:\Users\Rios_01\Documents\NetBeansProjects\TP1-Pontoalidade\src\main\java\pontoalidade\Falta.java
+C:\Users\Rios_01\Documents\NetBeansProjects\TP1-Pontoalidade\src\main\java\pontoalidade\LoginController.java
+C:\Users\Rios_01\Documents\NetBeansProjects\TP1-Pontoalidade\src\main\java\pontoalidade\UserDashboardController.java
+C:\Users\Rios_01\Documents\NetBeansProjects\TP1-Pontoalidade\src\main\java\pontoalidade\UserProfileController.java
+C:\Users\Rios_01\Documents\NetBeansProjects\TP1-Pontoalidade\src\main\java\pontoalidade\Administrador.java
+C:\Users\Rios_01\Documents\NetBeansProjects\TP1-Pontoalidade\src\main\java\pontoalidade\Justificativa.java
+C:\Users\Rios_01\Documents\NetBeansProjects\TP1-Pontoalidade\src\main\java\pontoalidade\JustificarFaltaController.java
+C:\Users\Rios_01\Documents\NetBeansProjects\TP1-Pontoalidade\src\main\java\pontoalidade\Main.java
+C:\Users\Rios_01\Documents\NetBeansProjects\TP1-Pontoalidade\src\main\java\pontoalidade\JustificativaController.java
+>>>>>>> f0d5da6188e454ec513d8c9f49808018b57cf26c

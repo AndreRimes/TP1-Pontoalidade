@@ -11,6 +11,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Label;
 
 
 /**
@@ -28,9 +29,13 @@ public class LoginController implements Initializable {
     @FXML 
     private PasswordField passwordField;
     
+    @FXML
+    private Label errorLabel;
+    
     public LoginController(Organizacao org){
         this.organizacao = org;
     }
+   
     
     
     @FXML
@@ -49,9 +54,9 @@ public class LoginController implements Initializable {
             }else {
                 router.orgDashboard(event, organizacao, (Administrador) user);
             }
- 
-        } catch (IllegalArgumentException e) {
-            System.out.println("SEnha errada filhao");
+        
+        }catch (IllegalArgumentException e) {
+            errorLabel.setText("Senha errada, tente novamente!");
         }
     }
     
@@ -65,6 +70,7 @@ public class LoginController implements Initializable {
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        errorLabel.setText(""); // Limpa qualquer mensagem ao inicializar
        
     }    
     
